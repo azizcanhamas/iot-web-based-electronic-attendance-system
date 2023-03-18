@@ -1,0 +1,18 @@
+1- Geliştirme Kartı:
+	* Arduino Nano + ESP8266 (110 + 43 TL)
+	* NodeMCU (82 TL)
+
+2- RFID Kart ve Reader (35 TL)
+3- Buzzer (8 TL)
+4- Yeşil ve Kırmızı LED (0,45 * 2 TL)
+5- Proje Kutusu (15 TL)
+6- OLED Ekran (120 TL)
+7- Adaptör (50 TL)
+8- 3.3V Voltaj Regülatörü (11 TL)
+9- Jumper
+10- Header
+11- Micro USB Kablo
+
+https://www.hayatimadokun.com/post/nodemcu-ile-rfid-kart-kontrol%C3%BC-ve-blynk-terminal
+
+https://github.com/IoTMike/ESP8266_RFID_OLED
