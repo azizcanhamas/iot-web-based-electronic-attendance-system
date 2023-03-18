@@ -1,0 +1,2 @@
+* Klasörler "Documents -> Arduino -> libraries" 
+dizinine kopyalanmalıdır.
