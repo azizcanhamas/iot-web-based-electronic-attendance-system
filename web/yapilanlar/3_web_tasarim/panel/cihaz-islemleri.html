@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Ana Sayfa | e-Yoklama</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">
+	
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.ico">
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="index.html" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
+						<li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
+						<li><a href="ogrenci-islemleri.html" class=""><i class="lnr lnr-user"></i> <span>Öğrenci İşlemleri</span></a></li>
+						<li><a href="ders-islemleri.html" class=""><i class="lnr lnr-user"></i> <span>Ders İşlemleri</span></a></li>
+						<li><a href="sinif-islemleri.html" class=""><i class="lnr lnr-user"></i> <span>Sınıf İşlemleri</span></a></li>
+						<li><a href="cihaz-islemleri.html" class="active"><i class="lnr lnr-user"></i> <span>Cihaz İşlemleri</span></a></li>
+
+						<li><a href="profil.html" class=""><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
+						<li><a href="ogrenci-login.html" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div> LEFT SIDEBAR -->
+
+
+
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					
+							
+							
+							<!-- Cihaz Ekle -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h2 class="panel-title"><b>Cihaz Ekle</b></h2>
+									<p class="panel-subtitle">Cihaz eklemek için aşağıdaki formu doldurup onaylayınız.</p>
+								</div>
+								<div class="panel-body">
+									
+
+									<form>
+										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
+										<select class="form-control">
+											<option value="BD-4">Derslik 4</option>
+										</select>
+										<br>
+
+										<input type="password" class="form-control" placeholder="Cihaza parola tanımlayınız.">
+										<br>
+
+										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
+									</form>
+									
+								</div>
+							</div>
+
+							<!-- Cihaz Sil -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h2 class="panel-title"><b>Cihaz Sil</b></h2>
+									<p class="panel-subtitle">Cihaz silmek için listeden cihaz seçip onaylayınız.</p>
+								</div>
+								<div class="panel-body">
+									
+									<form>
+
+										<!-- Burasi Thymeleaf ile generate edilecek. value cihaz id olmali. -->
+										<select class="form-control">
+											<option value="BD-4">Cihaz - Derslik 4</option>
+										</select>
+										<br>
+				
+									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+									<br>
+									</form>
+									
+								</div>
+							</div>
+
+							<!-- Cihaz Sınıfını Güncelle -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h2 class="panel-title"><b>Cihaz Sınıfını Güncelle</b></h2>
+									<p class="panel-subtitle">Cihaz sınıfını güncellemek için aşağıdaki formu doldurup onaylayınız.</p>
+								</div>
+								<div class="panel-body">
+									
+
+									<form>
+										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
+										<select class="form-control">
+											<option value="BD-4">Cihaz4 - Derslik 4</option>
+										</select>
+										<br>
+
+										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
+										<select class="form-control">
+											<option value="BD-1">Derslik-1</option>
+										</select>
+										<br>
+
+										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
+									</form>
+									
+								</div>
+							</div>
+
+
+						
+					<!-- END OVERVIEW -->	
+					
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		
+	<!-- END WRAPPER -->
+	
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+
+</body>
+
+</html>

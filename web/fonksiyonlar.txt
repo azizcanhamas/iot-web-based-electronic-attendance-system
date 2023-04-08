@@ -1,0 +1,29 @@
+Akademisyen
+	Öğrenci İşlemleri
+		* Öğrenci ekle
+		* Öğrenci sil
+		* Öğrenci bilgileri güncelle
+
+	Ders İşlemleri
+		* Ders ekle
+		* Ders sil
+		* Ders tarihi güncelle
+		* Ders sınıfı güncelle
+
+	Sınıf İşlemleri
+		* Sınıf ekle
+		* Sınıf sil
+
+	Cihaz işlemleri
+		* Cihaz ekle
+		* Cihaz sil
+		* Cihaz sınıfı güncelle
+		
+	
+	Oturumu Sonlandir
+
+
+Öğrenci
+	Ana Sayfa
+	Profil
+	Oturumu Sonlandir
