@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<title>Ana Sayfa | e-Yoklama</title>
@@ -64,47 +64,53 @@
 								<div class="panel-body">
 									
 
-									<form>
-										<input type="text" class="form-control" placeholder="Öğrenci No">
-									<br>
+									<form method="post" th:action="@{/ogrenciEkle}">
+										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci No">
+										<br>
 
-									<input type="text" class="form-control" placeholder="TC Kimlik Numarası">
-									<br>
+										<input type="text" name="tckn" class="form-control" placeholder="TC Kimlik Numarası">
+										<br>
 
-									<input type="text" class="form-control" placeholder="Ad">
-									<br>
+										<input type="text" name="ad" class="form-control" placeholder="Ad">
+										<br>
 
-									<input type="text" class="form-control" placeholder="Soyad">
-									<br>
+										<input type="text" name="soyad" class="form-control" placeholder="Soyad">
+										<br>
 
-									<input type="date" class="form-control" placeholder="Doğum Tarihi">
-									<br>
+										<input type="date" name="dogumTarihi" class="form-control" placeholder="Doğum Tarihi">
+										<br>
 
-									<input type="text" class="form-control" placeholder="Doğum Yeri">
-									<br>
-									
+										<input type="text" name="dogumYeri" class="form-control" placeholder="Doğum Yeri">
+										<br>
+										
 
-									<label class="fancy-radio">
-										<input name="gender" value="E" type="radio">
-										<span><i></i>Erkek</span>
-									</label>
-									<label class="fancy-radio">
-										<input name="gender" value="K" type="radio">
-										<span><i></i>Kadın</span>
-									</label>
-									<br>
+										<label class="fancy-radio">
+											<input name="cinsiyet" value="E" type="radio">
+											<span><i></i>Erkek</span>
+										</label>
+										<label class="fancy-radio">
+											<input name="cinsiyet" value="K" type="radio">
+											<span><i></i>Kadın</span>
+										</label>
+										<br>
 
-									<select class="form-control">
-										<option value="1">1. Sınıf</option>
-										<option value="2">2. Sınıf</option>
-										<option value="3">3. Sınıf</option>
-										<option value="4">4. Sınıf</option>
-									</select>
-									<br>
-									
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
-									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-									<br>
+										<select class="form-control" name="sinifi">
+											<option value="1">1. Sınıf</option>
+											<option value="2">2. Sınıf</option>
+											<option value="3">3. Sınıf</option>
+											<option value="4">4. Sınıf</option>
+										</select>
+										<br>
+
+										<input type="password" name="parola" class="form-control" placeholder="Parola">
+										<br>
+
+										<input type="text" name="rfidKodu" class="form-control" placeholder="RFID Kodu">
+										<br>
+										
+										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
 									</form>
 									
 								</div>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Profil | e-Yoklama</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">
+	
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.ico">
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a th:href="@{/index}" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
+						<li><a th:href="@{/index}" class=""><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
+						<li><a th:href="@{/profil}" class="active"><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
+						<li><a th:href="@{/ogrenci-login}" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div> 
+
+		<!-- END LEFT SIDEBAR -->
+
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<div class="panel panel-profile">
+						<div class="clearfix">
+							<!-- LEFT COLUMN -->
+							<div class="profile-left">
+								<!-- PROFILE HEADER -->
+								<div class="profile-header">
+									<div class="overlay"></div>
+									<div class="profile-main">
+										<img src="assets/img/grad.jpg" class="img-circle" alt="Avatar">
+										<h3 class="name">Aziz Can HAMAŞOĞLU</h3>
+										<span class="online-status status-available">Çevrimiçi</span>
+									</div>>
+								</div>
+								<!-- END PROFILE HEADER -->
+								<!-- PROFILE DETAIL -->
+								<div class="profile-detail">
+									<div class="profile-info">
+										<h4 class="heading">Bilgiler</h4>
+										<ul class="list-unstyled list-justify">
+											<li>Öğrenci No <span>24578965</span></li>
+											<li>TCKN <span>82340923424</span></li>
+											<li>Ad <span>Aziz Can</span></li>
+											<li>Soyad <span>HAMAŞOĞLU</span></li>
+											<li>Doğum Tarihi <span>12.10.2000</span></li>
+											<li>Doğum Yeri <span>Antakya/HATAY</span></li>
+											<li>Cinsiyet <span>Erkek</span></li>
+										</ul>
+									</div>
+									
+								</div>
+								<!-- END PROFILE DETAIL -->
+							</div>
+							<!-- END LEFT COLUMN -->
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		
+	<!-- END WRAPPER -->
+
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+</body>
+
+</html>
