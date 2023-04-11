@@ -10,7 +10,7 @@ public class Ogrenci{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "ogrenciNo")
     private String ogrenciNo;
     @Column(name = "tckn")
     private String tckn;
@@ -30,6 +30,10 @@ public class Ogrenci{
     private String parola;
     @Column(name = "rfid_kodu")
     private String rfidKodu;
+
+    //Spring Security icin role tanimlamasi
+    @Column(name="role")
+    private String role;
 
     public String getOgrenciNo() {
         return ogrenciNo;
@@ -117,6 +121,14 @@ public class Ogrenci{
 
     public void setRfidKodu(String rfidKodu) {
         this.rfidKodu = rfidKodu;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

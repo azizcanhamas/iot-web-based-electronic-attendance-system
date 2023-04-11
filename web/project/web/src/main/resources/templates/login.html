@@ -26,20 +26,17 @@
 						<div class="left">
 							<div class="content">
 								<div class="header">
-									<div class="logo text-center"><img src="assets/img/fu_logo_125x125.png" alt="Klorofil Logo"></div>
-									<p class="lead"><b>Öğrenci hesabınıza giriş yapınız</b></p>
+									<div class="logo text-center"><img src="assets/img/fu_logo_125x125.png" alt="Fırat Üniversitesi Logo"></div>
+									<p class="lead"><b>Giriş yapınız</b></p>
 								</div>
-								<form class="form-auth-small" th:action="@{/home}">
+								<form class="form-auth-small" method="post" th:action="@{/process-login}">
 									<div class="form-group">								
-										<input type="email" class="form-control" id="signin-email" placeholder="Öğrenci Numaranız">
+										<input type="text" name="username" class="form-control" id="signin-email" placeholder="Hesap Numaranız">
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control" id="signin-password" placeholder="Parolanız">
+										<input type="password" name="password" class="form-control" id="signin-password" placeholder="Parolanız">
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Giriş Yap</button>
-									<a th:href="@{/akademisyen-login}">
-										<button type="button" class="btn btn-primary btn-lg btn-block">Akademisyen Girişi</button>
-									</a>
 								</form>
 							</div>
 						</div>

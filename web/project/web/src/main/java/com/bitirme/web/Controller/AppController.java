@@ -1,35 +1,45 @@
 package com.bitirme.web.Controller;
 
 import com.bitirme.web.Entity.Ogrenci;
+import com.bitirme.web.Entity.Sinif;
+import com.bitirme.web.Repository.SinifRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class AppController {
+
+    @Autowired
+    private SinifRepository sinifRepo;
+
     @GetMapping("/")
     public String empty(){
-        return "ogrenci-login";
+        return "login";
     }
+
     @GetMapping("/home")
     public String home(){
         return "home";
     }
+
     @GetMapping("/index")
     public String index(){
         return "redirect:/home";
     }
 
-    @GetMapping("/akademisyen-login")
-    public String akademisyenLogin(){
-        return "akademisyen-login";
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
-    @GetMapping("/ogrenci-login")
-    public String ogrenciLogin(){
-        return "ogrenci-login";
+    @GetMapping("/ogrenci-panel")
+    public String ogrenciPanel(){
+        return "ogrenci-panel";
     }
-
 
     @GetMapping("/ogrenci-islemleri")
     public String ogrenciIslemleri(Model model){
@@ -43,13 +53,16 @@ public class AppController {
     }
 
     @GetMapping("/sinif-islemleri")
-    public String sinifIslemleri(){
+    public String sinifIslemleri(Model model){
+        List<Sinif> sinifList=sinifRepo.findAll();
+        model.addAttribute("siniflar",sinifList);
         return "sinif-islemleri";
     }
     @GetMapping("/ders-islemleri")
     public String dersIslemleri(){
         return "ders-islemleri";
     }
+
     @GetMapping("/cihaz-islemleri")
     public String cihazIslemleri(){
         return "cihaz-islemleri";

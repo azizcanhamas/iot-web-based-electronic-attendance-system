@@ -39,7 +39,7 @@
 						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-laptop-phone"></i> <span>Cihaz İşlemleri</span></a></li>
 
 						<li><a th:href="@{/profil}" class=""><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
-						<li><a th:href="@{/ogrenci-login}" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
+						<li><a th:href="@{/logout}" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -65,17 +65,17 @@
 								<div class="panel-body">
 									
 
-									<form>
-										<input type="text" class="form-control" placeholder="Sınıf Kodu">
+									<form method="get" th:action="@{/sinifEkle}">
+										<input type="text" name="sinifKodu" class="form-control" placeholder="Sınıf Kodu">
 										<br>
 
-										<input type="text" class="form-control" placeholder="Sınıf Adı">
+										<input type="text" name="sinifAdi" class="form-control" placeholder="Sınıf Adı">
 										<br>
 
-										<input type="number" class="form-control" placeholder="Sınıf Kapasitesi">
+										<input type="number" name="sinifKapasitesi" class="form-control" placeholder="Sınıf Kapasitesi">
 										<br>
 
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 										<br>
 									</form>
@@ -92,15 +92,15 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
+									<form method="get" th:action="@{/sinifSil}">
 
 										<!-- Burasi Thymeleaf ile generate edilecek. value sinif kodu olmali. -->
-										<select class="form-control">
-											<option value="BD-4">Derslik 4</option>
+										<select name="sinifKodu" class="form-control">
+											<option th:value="*{sinif.sinifKodu}" th:each="sinif : ${siniflar}">[[*{sinif.sinifAdi}]]</option>
 										</select>
 										<br>
 				
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 										<br>
 									</form>

@@ -16,7 +16,9 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
+	<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -24,38 +26,53 @@
 			<scope>provided</scope>
 		</dependency>
 
+	<!-- Spring Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
+	<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
+	<!-- Thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
+
+	<!-- Spring Web -->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+	<!-- Dev Tools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+	<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+	<!-- JUnit -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -68,37 +85,35 @@
 			</exclusions>
 		</dependency>
 
-
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.security</groupId>-->
-<!--			<artifactId>spring-security-test</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
-
-
-	<!--	Hibernate Validator -->
-		<!-- Bean Validation API and RI -->
+		<!-- JAVAX Validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
+
+		<!--	Hibernate Validator -->
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.2.4.Final</version>
 		</dependency>
 
+		<!-- JQuery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>3.4.1</version>
 		</dependency>
+
+		<!-- Bootstrap -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>4.3.1</version>
 		</dependency>
+
+		<!-- ???? -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
