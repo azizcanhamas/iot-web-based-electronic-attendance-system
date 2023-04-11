@@ -3,13 +3,13 @@ package com.bitirme.web.Controller;
 import com.bitirme.web.Entity.Ogrenci;
 import com.bitirme.web.Repository.OgrenciRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
 
 @Controller
 public class OgrenciController {
@@ -18,25 +18,52 @@ public class OgrenciController {
     private OgrenciRepository ogrenciRepo;
 
     @PostMapping("/ogrenciEkle")
-    public ResponseEntity ogrenciEkle(Ogrenci ogrenci){
-//        Ogrenci ogr=new Ogrenci();
-//        ogr.setOgrenciNo(ogrenci.get("ogrenciNo"));
-//        ogr.setTckn(ogrenci.get("tckn"));
-//        ogr.setAd(ogrenci.get("ad"));
-//        ogr.setSoyad(ogrenci.get("soyad"));
-//        ogr.setDogumTarihi(ogrenci.get("dogumTarihi"));
-//        ogr.setDogumYeri(ogrenci.get("dogumYeri"));
-
-//        ogr.setCinsiyet('E');
-//        ogr.setSinifi('2');
-
-//        ogr.setCinsiyet(ogrenci.get("cinsiyet").charAt(0));
-//        ogr.setSinifi(ogrenci.get("sinifi").charAt(0));
-//        ogr.setRfidKodu(ogrenci.get("rfidKodu"));
-//        ogr.setParola(ogrenci.get("parola"));
-
+    public String ogrenciEkle(Ogrenci ogrenci){
         ogrenciRepo.save(ogrenci);
-        return new ResponseEntity("Başarılı!", HttpStatus.OK);
+        return "ogrenci-islemleri";
+    }
+
+    // Guncelleme islemi icin ogrencinin var olup olmadigi sorgulanir
+    // ve varsa kullaniciya bilgiler return edilir.
+    @PostMapping("/ogrenciGuncelle")
+    public String ogrenciGuncelle(@RequestParam String ogrenciNo, Model model){
+        Ogrenci ogr=ogrenciRepo.findByOgrenciNo(ogrenciNo);
+        if(ogr!=null) model.addAttribute("ogrUpdate",ogr);
+        return "ogrenci-islemleri";
+    }
+
+    // Var olan bir ogrencinin yeni bilgilerinin update edilmesi
+    @PostMapping("/ogrenciGuncelleUpdate/{ogrenciNo}")
+    public String ogrenciGuncelleUpdate(Ogrenci ogrenci, @PathVariable String ogrenciNo){
+        Ogrenci ogr=ogrenciRepo.findByOgrenciNo(ogrenciNo);
+
+        if(ogrenci.getAd()!=null)
+            ogr.setAd(ogrenci.getAd());
+        if (ogrenci.getSoyad()!=null)
+            ogr.setSoyad(ogrenci.getSoyad());
+        if(ogrenci.getDogumTarihi()!=null)
+            ogr.setDogumTarihi(ogrenci.getDogumTarihi());
+
+        if(ogrenci.getParola()!=null)
+            ogr.setParola(ogrenci.getParola());
+        if (ogrenci.getRfidKodu()!=null)
+            ogr.setRfidKodu(ogrenci.getRfidKodu());
+        ogrenciRepo.save(ogr);
+        return "redirect:/ogrenci-islemleri";
+    }
+
+
+    @GetMapping("/ogrenciDelete")
+    public String ogrenciDelete(@RequestParam String ogrenciNo){
+        ogrenciRepo.deleteByOgrenciNo(ogrenciNo);
+        return "ogrenci-islemleri";
+    }
+
+    @GetMapping("/ogrenciSorgula")
+    public String ogrenciSorgula(@RequestParam String ogrenciNo, Model model){
+        Ogrenci ogr=ogrenciRepo.findByOgrenciNo(ogrenciNo);
+        model.addAttribute("ogrenciSorgu",ogr);
+        return "ogrenci-islemleri";
     }
 
 }

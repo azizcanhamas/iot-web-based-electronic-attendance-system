@@ -32,10 +32,11 @@
 					<ul class="nav">
 						<li><a th:href="@{/index}" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
 						<li><a th:href="@{/index}" class=""><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
-						<li><a th:href="@{/ogrenci-islemleri}" class=""><i class="lnr lnr-user"></i> <span>Öğrenci İşlemleri</span></a></li>
-						<li><a th:href="@{/ders-islemleri}" class="active"><i class="lnr lnr-user"></i> <span>Ders İşlemleri</span></a></li>
-						<li><a th:href="@{/sinif-islemleri}" class=""><i class="lnr lnr-user"></i> <span>Sınıf İşlemleri</span></a></li>
-						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-user"></i> <span>Cihaz İşlemleri</span></a></li>
+						<li><a th:href="@{/ogrenci-islemleri}" class=""><i class="lnr lnr-users"></i> <span>Öğrenci İşlemleri</span></a></li>
+						<li><a th:href="@{/devam-islemleri}" class=""><i class="lnr lnr-paperclip"></i> <span>Devam İşlemleri</span></a></li>
+						<li><a th:href="@{/ders-islemleri}" class="active"><i class="lnr lnr-select"></i> <span>Ders İşlemleri</span></a></li>
+						<li><a th:href="@{/sinif-islemleri}" class=""><i class="fa fa-chalkboard"></i> <span>Sınıf İşlemleri</span></a></li>
+						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-laptop-phone"></i> <span>Cihaz İşlemleri</span></a></li>
 
 						<li><a th:href="@{/profil}" class=""><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
 						<li><a th:href="@{/ogrenci-login}" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
@@ -101,7 +102,7 @@
 									<input type="time" class="form-control" placeholder="Ders Saati">
 									<br>
 									
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
@@ -125,9 +126,9 @@
 										</select>
 										<br>
 				
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
-									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-									<br>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
 									</form>
 									
 								</div>
@@ -155,7 +156,7 @@
 										</select>
 										<br>
 				
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
@@ -196,7 +197,7 @@
 
 
 				
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>

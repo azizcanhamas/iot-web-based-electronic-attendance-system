@@ -33,10 +33,10 @@
 						<li><a th:href="@{/index}" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
 						<li><a th:href="@{/index}" class=""><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
 						<li><a th:href="@{/ogrenci-islemleri}" class=""><i class="lnr lnr-users"></i> <span>Öğrenci İşlemleri</span></a></li>
-						<li><a th:href="@{/devam-islemleri}" class=""><i class="lnr lnr-paperclip"></i> <span>Devam İşlemleri</span></a></li>
+						<li><a th:href="@{/devam-islemleri}" class="active"><i class="lnr lnr-paperclip"></i> <span>Devam İşlemleri</span></a></li>
 						<li><a th:href="@{/ders-islemleri}" class=""><i class="lnr lnr-select"></i> <span>Ders İşlemleri</span></a></li>
 						<li><a th:href="@{/sinif-islemleri}" class=""><i class="fa fa-chalkboard"></i> <span>Sınıf İşlemleri</span></a></li>
-						<li><a th:href="@{/cihaz-islemleri}" class="active"><i class="lnr lnr-laptop-phone"></i> <span>Cihaz İşlemleri</span></a></li>
+						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-laptop-phone"></i> <span>Cihaz İşlemleri</span></a></li>
 
 						<li><a th:href="@{/profil}" class=""><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
 						<li><a th:href="@{/ogrenci-login}" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
@@ -44,7 +44,7 @@
 				</nav>
 			</div>
 		</div> 
-		<!--LEFT SIDEBAR -->
+		<!-- END LEFT SIDEBAR -->
 
 
 
@@ -56,87 +56,70 @@
 					
 							
 							
-							<!-- Cihaz Ekle -->
+							<!-- "Gelmedi" Yaz -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h2 class="panel-title"><b>Cihaz Ekle</b></h2>
-									<p class="panel-subtitle">Cihaz eklemek için aşağıdaki formu doldurup onaylayınız.</p>
+									<h2 class="panel-title"><b>"Gelmedi" Yaz</b></h2>
+									<p class="panel-subtitle">Öğrenciyi "Derse Gelmedi" olarak işaretlemek için aşağıdaki formu doldurup onaylayınız.</p>
 								</div>
 								<div class="panel-body">
 									
 
-									<form>
-										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
-										<select class="form-control">
-											<option value="BD-4">Derslik 4</option>
+									<form th:method="post" th:action="@{/gelmediYaz}" th:object="${Devamsizlik}" id="ekleForm">
+										<input type="text" name="ogrenci_no" class="form-control" placeholder="Öğrenci No">
+										<br>
+
+										<select class="form-control" name="ders_kodu">
+											<option value="BMU234">Sayısal İşaret İşleme</option>
+											<option value="BMU345">Mikroişlemciler</option>
+											<option value="BMU456">Derin Öğrenme</option>
 										</select>
 										<br>
 
-										<input type="password" class="form-control" placeholder="Cihaza parola tanımlayınız.">
+										<input type="date" name="devamsizlik_tarihi" class="form-control" placeholder="Devamsızlık Tarihi">
 										<br>
-
-										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
-										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-										<br>
-									</form>
-									
-								</div>
-							</div>
-
-							<!-- Cihaz Sil -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h2 class="panel-title"><b>Cihaz Sil</b></h2>
-									<p class="panel-subtitle">Cihaz silmek için listeden cihaz seçip onaylayınız.</p>
-								</div>
-								<div class="panel-body">
-									
-									<form>
-
-										<!-- Burasi Thymeleaf ile generate edilecek. value cihaz id olmali. -->
-										<select class="form-control">
-											<option value="BD-4">Cihaz - Derslik 4</option>
-										</select>
-										<br>
-				
-									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
-									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-									<br>
-									</form>
-									
-								</div>
-							</div>
-
-							<!-- Cihaz Sınıfını Güncelle -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h2 class="panel-title"><b>Cihaz Sınıfını Güncelle</b></h2>
-									<p class="panel-subtitle">Cihaz sınıfını güncellemek için aşağıdaki formu doldurup onaylayınız.</p>
-								</div>
-								<div class="panel-body">
-									
-
-									<form>
-										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
-										<select class="form-control">
-											<option value="BD-4">Cihaz4 - Derslik 4</option>
-										</select>
-										<br>
-
-										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
-										<select class="form-control">
-											<option value="BD-1">Derslik-1</option>
-										</select>
-										<br>
+										
 
 										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
-									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-									<br>
+                                        <div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
 									</form>
 									
 								</div>
 							</div>
 
+
+							<!-- "Geldi" Yaz -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h2 class="panel-title"><b>"Geldi" Yaz</b></h2>
+									<p class="panel-subtitle">Öğrenciyi "Derse Geldi" olarak işaretlemek için aşağıdaki formu doldurup onaylayınız.</p>
+								</div>
+								<div class="panel-body">
+									
+
+									<form th:method="post" th:action="@{/geldiYaz}" th:object="${Devamsizlik}" id="ekleForm">
+										<input type="text" name="ogrenci_no" class="form-control" placeholder="Öğrenci No">
+										<br>
+
+										<select class="form-control" name="ders_kodu">
+											<option value="BMU234">Sayısal İşaret İşleme</option>
+											<option value="BMU345">Mikroişlemciler</option>
+											<option value="BMU456">Derin Öğrenme</option>
+										</select>
+										<br>
+
+										<input type="date" name="devamsizlik_tarihi" class="form-control" placeholder="Devamsızlık Tarihi">
+										<br>
+										
+
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+                                        <div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
+									</form>
+									
+								</div>
+							</div>
 
 						
 					<!-- END OVERVIEW -->	
@@ -149,9 +132,26 @@
 		
 	<!-- END WRAPPER -->
 	
-	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<!-- <script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
+
+	<script>
+		$(document).ready(function(){
+		$('[name="ekleButton"]').click(function(e)
+        {
+            var MyForm = JSON.stringify($('[id="ekleForm"]').serializeJSON());
+            console.log(MyForm);
+            $.post({
+				contentType: 'application/json',
+                url : "http://localhost:8080/ogrenciEkle",
+                data : MyForm,
+
+            });
+            e.preventDefault();
+        });
+    });
+	</script>
 
 
 </body>

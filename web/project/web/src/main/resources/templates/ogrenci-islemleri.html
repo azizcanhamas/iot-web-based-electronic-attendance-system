@@ -19,6 +19,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.ico">
+	
+	<style>
+		.error{
+			color:red;	
+		}
+	</style>
 </head>
 
 <body>
@@ -32,10 +38,11 @@
 					<ul class="nav">
 						<li><a th:href="@{/index}" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
 						<li><a th:href="@{/index}" class=""><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
-						<li><a th:href="@{/ogrenci-islemleri}" class="active"><i class="lnr lnr-user"></i> <span>Öğrenci İşlemleri</span></a></li>
-						<li><a th:href="@{/ders-islemleri}" class=""><i class="lnr lnr-user"></i> <span>Ders İşlemleri</span></a></li>
-						<li><a th:href="@{/sinif-islemleri}" class=""><i class="lnr lnr-user"></i> <span>Sınıf İşlemleri</span></a></li>
-						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-user"></i> <span>Cihaz İşlemleri</span></a></li>
+						<li><a th:href="@{/ogrenci-islemleri}" class="active"><i class="lnr lnr-users"></i> <span>Öğrenci İşlemleri</span></a></li>
+						<li><a th:href="@{/devam-islemleri}" class=""><i class="lnr lnr-paperclip"></i> <span>Devam İşlemleri</span></a></li>
+						<li><a th:href="@{/ders-islemleri}" class=""><i class="lnr lnr-select"></i> <span>Ders İşlemleri</span></a></li>
+						<li><a th:href="@{/sinif-islemleri}" class=""><i class="fa fa-chalkboard"></i> <span>Sınıf İşlemleri</span></a></li>
+						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-laptop-phone"></i> <span>Cihaz İşlemleri</span></a></li>
 
 						<li><a th:href="@{/profil}" class=""><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
 						<li><a th:href="@{/ogrenci-login}" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
@@ -108,10 +115,9 @@
 										<input type="text" name="rfidKodu" class="form-control" placeholder="RFID Kodu">
 										<br>
 
-										<button type="submit" name="ekleButton">OnaylaButton</button>
-
-										<div class="col-md-6 text-right"><a th:href="@{/ogrenciEkle}" name="ekleButtonXXX" class="btn btn-primary">Onayla</a></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
 										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
 										<br>
 									</form>
 									
@@ -127,13 +133,40 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
-										<input type="text" class="form-control" placeholder="Öğrenci No">
+									<form th:action="@{/ogrenciGuncelle}" method="post">
+										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci No">
 									<br>
-				
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+										
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
+									</form>
+
+									<form th:if="${ogrUpdate!=null}" th:action="@{/ogrenciGuncelleUpdate/}+${ogrUpdate.ogrenciNo}" th:object="${Ogrenci}" method="post">
+										<h3>Öğrenciye ait bilgileri güncelleyiniz.</h3>
+										
+										<input type="text" name="ad" class="form-control" placeholder="Ad" th:value="${ogrUpdate.ad}">
+										<br>
+
+										<input type="text" name="soyad" class="form-control" placeholder="Soyad" th:value="${ogrUpdate.soyad}">
+										<br>
+										
+										<input type="date" name="dogumTarihi" class="form-control" placeholder="Doğum Tarihi" th:value="${ogrUpdate.dogumTarihi}">
+										<br>
+										
+										<input type="password" name="parola" class="form-control" placeholder="Yeni Parola" th:value="${ogrUpdate.parola}">
+										<br>
+
+										<input type="text" name="rfidKodu" class="form-control" placeholder="RFID Kodu" th:value="${ogrUpdate.rfidKodu}">
+										<br>
+
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
+									</form>
+
+									<form th:if="${#httpServletRequest.requestURI == 'http://localhost:8080/ogrenciGuncelle'} ? ${ogrUpdate!=null}" th:action="@{/ogrenciGuncelleUpdate}" method="post">
+										Öğrenci kayıtlı değil!
 									</form>
 									
 								</div>
@@ -147,11 +180,11 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
-										<input type="text" class="form-control" placeholder="Öğrenci No">
+									<form method="get" th:action="@{/ogrenciDelete}">
+										<input type="text" class="form-control" name="ogrenciNo" placeholder="Öğrenci No">
 									<br>
 				
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
@@ -167,11 +200,11 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
-										<input type="text" class="form-control" placeholder="Öğrenci No">
+									<form method="get" th:action="@{/ogrenciSorgula}">
+										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci No">
 									<br>
 				
-									<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
@@ -179,7 +212,7 @@
 								</div>
 
 
-								<div class="row">
+								<div class="row" th:if="${ogrenciSorgu!=null}">
 									<div class="col-md-12">
 										<div class="panel-body no-padding">
 											<table class="table table-striped">
@@ -192,11 +225,11 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td><a href="#">200260094</a></td>
-														<td>Aziz Can</td>
-														<td>Hamaşoğlu</td>
-														<td>4</td>
+													<tr th:each="ogr : ${ogrenciSorgu}">
+														<td><a href="#">[[*{ogr.ogrenciNo}]]</a></td>
+														<td>[[*{ogr.ad}]]</td>
+														<td>[[*{ogr.soyad}]]</td>
+														<td>[[*{ogr.sinifi}]]</td>
 														<!-- <td><span class="label label-success">COMPLETED</span></td> -->
 													</tr>	
 												</tbody>

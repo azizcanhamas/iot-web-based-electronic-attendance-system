@@ -29,7 +29,7 @@
 									<div class="logo text-center"><img src="assets/img/fu_logo_125x125.png" alt="Fırat Üniversitesi Logosu"></div>
 									<p class="lead"><b>Akademisyen hesabınıza giriş yapınız</b></p>
 								</div>
-								<form class="form-auth-small" th:action="@{/index}">
+								<form class="form-auth-small" th:action="@{/home}">
 									<div class="form-group">								
 										<input type="email" class="form-control" id="signin-email" placeholder="Personel Numaranız">
 									</div>
@@ -37,7 +37,7 @@
 										<input type="password" class="form-control" id="signin-password" placeholder="Parolanız">
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Giriş Yap</button>
-									<a href="@{/ogrenci-login}">
+									<a th:href="@{/ogrenci-login}">
 										<button type="button" class="btn btn-primary btn-lg btn-block">Öğrenci Girişi</button>
 									</a>
 								</form>

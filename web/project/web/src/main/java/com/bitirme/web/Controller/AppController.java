@@ -15,17 +15,33 @@ public class AppController {
     public String home(){
         return "home";
     }
+    @GetMapping("/index")
+    public String index(){
+        return "redirect:/home";
+    }
 
     @GetMapping("/akademisyen-login")
     public String akademisyenLogin(){
         return "akademisyen-login";
     }
 
+    @GetMapping("/ogrenci-login")
+    public String ogrenciLogin(){
+        return "ogrenci-login";
+    }
+
+
     @GetMapping("/ogrenci-islemleri")
     public String ogrenciIslemleri(Model model){
         model.addAttribute("Ogrenci",new Ogrenci());
         return "ogrenci-islemleri";
     }
+
+    @GetMapping("/devam-islemleri")
+    public String devamIslemleri(){
+        return "devam-islemleri";
+    }
+
     @GetMapping("/sinif-islemleri")
     public String sinifIslemleri(){
         return "sinif-islemleri";
@@ -37,5 +53,10 @@ public class AppController {
     @GetMapping("/cihaz-islemleri")
     public String cihazIslemleri(){
         return "cihaz-islemleri";
+    }
+
+    @GetMapping("/profil")
+    public String profil(){
+        return "profil";
     }
 }

@@ -2,7 +2,6 @@ package com.bitirme.web.Entity;
 
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "Ogrenci")
@@ -10,6 +9,7 @@ public class Ogrenci{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String ogrenciNo;
     @Column(name = "tckn")
