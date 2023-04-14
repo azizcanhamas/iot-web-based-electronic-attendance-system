@@ -131,25 +131,25 @@
 									<br>
 									</form>
 
-									<form th:if="${akademisyenUpdate!=null}" th:action="@{/akademisyenGuncelleUpdate/}+${akademisyenUpdate.akademisyenNo}" th:object="${Akademisyen}" method="post">
+									<form th:if="${akaUpdate!=null}" th:action="@{/unvanGuncelleUpdate/}+${akaUpdate.personelNo}" th:object="${Akademisyen}" method="post">
 										<h3>Akademisyene ait ünvan bilgisini seçiniz.</h3>
 										
-										<input type="text" name="personelNo" class="form-control" placeholder="Personel No" th:value="${akademisyenUpdate.personelNo}" disabled>
+										<input type="text" name="personelNo" class="form-control" placeholder="Personel No" th:value="${akaUpdate.personelNo}" disabled>
 										<br>
 
-										<input type="text" name="ad" class="form-control" placeholder="Ad" th:value="${akademisyenUpdate.ad}" disabled>
+										<input type="text" name="ad" class="form-control" placeholder="Ad" th:value="${akaUpdate.ad}" disabled>
 										<br>
 
-										<input type="text" name="soyad" class="form-control" placeholder="Soyad" th:value="${akademisyenUpdate.soyad}" disabled>
+										<input type="text" name="soyad" class="form-control" placeholder="Soyad" th:value="${akaUpdate.soyad}" disabled>
 										<br>
 										
 										<select class="form-control" name="unvan">
-											<option th:selected="${akademisyenUpdate.unvan=='Prof. Dr.'}" value="Prof. Dr.">Prof. Dr.</option>
-											<option th:selected="${akademisyenUpdate.unvan=='Doç. Dr.'}" value="Doç. Dr.">Doç. Dr.</option>
-											<option th:selected="${akademisyenUpdate.unvan=='Yrd. Doç. Dr.'}" value="Yrd. Doç. Dr.">Yrd. Doç. Dr.</option>
-											<option th:selected="${akademisyenUpdate.unvan=='Dr. Öğr. Üyesi'}" value="Dr. Öğr. Üyesi">Dr. Öğr. Üyesi</option>
-											<option th:selected="${akademisyenUpdate.unvan=='Öğr. Gör.'}" value="Öğr. Gör.">Öğr. Gör.</option>
-											<option th:selected="${akademisyenUpdate.unvan=='Arş. Gör.'}" value="Arş. Gör.">Arş. Gör.</option>
+											<option th:selected="${akaUpdate.unvan=='Prof. Dr.'}" value="Prof. Dr.">Prof. Dr.</option>
+											<option th:selected="${akaUpdate.unvan=='Doç. Dr.'}" value="Doç. Dr.">Doç. Dr.</option>
+											<option th:selected="${akaUpdate.unvan=='Yrd. Doç. Dr.'}" value="Yrd. Doç. Dr.">Yrd. Doç. Dr.</option>
+											<option th:selected="${akaUpdate.unvan=='Dr. Öğr. Üyesi'}" value="Dr. Öğr. Üyesi">Dr. Öğr. Üyesi</option>
+											<option th:selected="${akaUpdate.unvan=='Öğr. Gör.'}" value="Öğr. Gör.">Öğr. Gör.</option>
+											<option th:selected="${akaUpdate.unvan=='Arş. Gör.'}" value="Arş. Gör.">Arş. Gör.</option>
 										</select>
 										<br>
 							
@@ -158,7 +158,7 @@
 										<br>
 									</form>
 
-									<form th:if="${#httpServletRequest.requestURI == 'http://localhost:8080/akademisyenGuncelle'} ? ${akademisyenUpdate!=null}" th:action="@{/akademisyenGuncelleUpdate}" method="post">
+									<form th:if="${#httpServletRequest.requestURI == 'http://localhost:8080/unvanGuncelle'} ? ${akaUpdate!=null}" th:action="@{/unvanGuncelleUpdate}" method="post">
 										Akademisyen kayıtlı değil!
 									</form>
 									

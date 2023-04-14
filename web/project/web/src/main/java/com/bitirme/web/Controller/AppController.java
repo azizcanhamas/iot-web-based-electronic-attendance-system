@@ -1,8 +1,7 @@
 package com.bitirme.web.Controller;
 
-import com.bitirme.web.Entity.Ogrenci;
-import com.bitirme.web.Entity.Sinif;
-import com.bitirme.web.Entity.User;
+import com.bitirme.web.Entity.*;
+import com.bitirme.web.Repository.CihazRepository;
 import com.bitirme.web.Repository.SinifRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,10 @@ public class AppController {
     @Autowired
     private SinifRepository sinifRepo;
 
+    @Autowired
+    private CihazRepository cihazRepo;
+
+    //====== CONTROLLER FUNCTIONS
     @GetMapping("/")
     public String empty(){
         return "login";
@@ -45,7 +48,6 @@ public class AppController {
     @GetMapping("/ogrenci-islemleri")
     public String ogrenciIslemleri(Model model){
         model.addAttribute("Ogrenci",new Ogrenci());
-        model.addAttribute("User",new User());
         return "ogrenci-islemleri";
     }
 
@@ -66,12 +68,20 @@ public class AppController {
     }
 
     @GetMapping("/cihaz-islemleri")
-    public String cihazIslemleri(){
+    public String cihazIslemleri(Model model){
+        //Sinif listesi olustur
+        List<Sinif>sinifList=sinifRepo.findAll();
+        model.addAttribute("siniflar",sinifList);
+
+        //Cihaz listesi olustur
+        List<Cihaz>cihazList=cihazRepo.findAll();
+        model.addAttribute("cihazlar",cihazList);
         return "cihaz-islemleri";
     }
 
     @GetMapping("/akademisyen-islemleri")
-    public String akademisyenIslemleri(){
+    public String akademisyenIslemleri(Model model){
+        model.addAttribute("Akademisyen",new Akademisyen());
         return "akademisyen-islemleri";
     }
 }

@@ -65,18 +65,19 @@
 								<div class="panel-body">
 									
 
-									<form>
-										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
-										<select class="form-control">
-											<option value="BD-4">Derslik 4</option>
+									<form method="get" th:action="@{/cihazEkle}">
+										
+										<select name="sinifKodu" class="form-control">
+											<option th:each="sinif : ${siniflar}" th:value="*{sinif.sinifKodu}">[[*{sinif.sinifAdi}]]</option>
 										</select>
 										<br>
 
-										<input type="password" class="form-control" placeholder="Cihaza parola tanımlayınız.">
+										<input type="password" name="cihazToken" class="form-control" placeholder="Cihaza parola tanımlayınız.">
 										<br>
 
-										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Onayla</a></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
 										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+	
 										<br>
 									</form>
 									
@@ -91,15 +92,15 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
+									<form method="get" th:action="@{/cihazSil}">
 
 										<!-- Burasi Thymeleaf ile generate edilecek. value cihaz id olmali. -->
-										<select class="form-control">
-											<option value="BD-4">Cihaz - Derslik 4</option>
+										<select name="sinifKodu" class="form-control">
+											<option th:value="*{cihaz.sinifKodu}" th:each="cihaz : ${cihazlar}">[['Cihaz-'+*{cihaz.id}+' / '+*{cihaz.sinifKodu}]]</option>
 										</select>
 										<br>
 				
-									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
@@ -116,20 +117,18 @@
 								<div class="panel-body">
 									
 
-									<form>
-										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
-										<select class="form-control">
-											<option value="BD-4">Cihaz4 - Derslik 4</option>
+									<form method="get" th:action="@{/cihazGuncelle}">
+										<select name="eskiSinif" class="form-control">
+											<option th:value="*{cihaz.sinifKodu}" th:each="cihaz : ${cihazlar}">[['Cihaz-'+*{cihaz.id}+' / '+*{cihaz.sinifKodu}]]</option>
 										</select>
 										<br>
 
-										<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
-										<select class="form-control">
-											<option value="BD-1">Derslik-1</option>
+										<select name="yeniSinif" class="form-control">
+											<option th:each="sinif : ${siniflar}" th:value="*{sinif.sinifKodu}">[[*{sinif.sinifAdi}]]</option>
 										</select>
 										<br>
 
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
