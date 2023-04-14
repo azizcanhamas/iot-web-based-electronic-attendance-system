@@ -20,4 +20,7 @@ public interface AkademisyenRepository  extends JpaRepository<Akademisyen,Long> 
 
     @Query("select a.unvan, a.ad, a.soyad from Akademisyen a where a.personelNo=?1")
     public List<String> getPersonelNameandSurname(String personelNo);
+
+    @Query("select count(*) from Akademisyen")
+    public int getAkademisyenSayisi();
 }

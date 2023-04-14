@@ -16,4 +16,7 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci,Long> {
     @Modifying
     @Query("DELETE FROM Ogrenci o WHERE o.ogrenciNo = ?1")
     public void deleteByOgrenciNo(String ogrenciNo);
+
+    @Query("select count(*) from Ogrenci")
+    public int getOgrenciSayisi();
 }

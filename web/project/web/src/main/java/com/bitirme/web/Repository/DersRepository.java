@@ -17,4 +17,7 @@ public interface DersRepository extends JpaRepository<Ders,Long> {
 
     @Query("select d from Ders d where d.dersKodu=?1")
     public Ders findByDersKodu(String dersKodu);
+
+    @Query("select count(*) from Ders")
+    public int getDersSayisi();
 }

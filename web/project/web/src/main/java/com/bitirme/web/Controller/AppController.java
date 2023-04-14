@@ -1,10 +1,7 @@
 package com.bitirme.web.Controller;
 
 import com.bitirme.web.Entity.*;
-import com.bitirme.web.Repository.AkademisyenRepository;
-import com.bitirme.web.Repository.CihazRepository;
-import com.bitirme.web.Repository.DersRepository;
-import com.bitirme.web.Repository.SinifRepository;
+import com.bitirme.web.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +24,9 @@ public class AppController {
     @Autowired
     private DersRepository dersRepo;
 
+    @Autowired
+    private OgrenciRepository ogrenciRepo;
+
     //====== CONTROLLER FUNCTIONS
     @GetMapping("/")
     public String empty(){
@@ -34,7 +34,10 @@ public class AppController {
     }
 
     @GetMapping("/home")
-    public String home(){
+    public String home(Model model){
+        model.addAttribute("dersSayisi",dersRepo.getDersSayisi());
+        model.addAttribute("ogrenciSayisi",ogrenciRepo.getOgrenciSayisi());
+        model.addAttribute("akademisyenSayisi",akaRepo.getAkademisyenSayisi());
         return "home";
     }
 
