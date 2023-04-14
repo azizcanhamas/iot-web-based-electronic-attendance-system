@@ -26,14 +26,8 @@ public class Ogrenci{
     private char cinsiyet;
     @Column(name = "sinifi")
     private char sinifi;
-    @Column(name = "parola")
-    private String parola;
     @Column(name = "rfid_kodu")
     private String rfidKodu;
-
-    //Spring Security icin role tanimlamasi
-    @Column(name="role")
-    private String role;
 
     public String getOgrenciNo() {
         return ogrenciNo;
@@ -107,28 +101,12 @@ public class Ogrenci{
         this.sinifi = sinifi;
     }
 
-    public String getParola() {
-        return parola;
-    }
-
-    public void setParola(String parola) {
-        this.parola = parola;
-    }
-
     public String getRfidKodu() {
         return rfidKodu;
     }
 
     public void setRfidKodu(String rfidKodu) {
         this.rfidKodu = rfidKodu;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }
 

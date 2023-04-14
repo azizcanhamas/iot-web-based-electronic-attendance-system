@@ -18,8 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private DataSource dataSource;
+    @Autowired private LoginSuccessHandler successHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -45,18 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/resources/**").anyRequest();
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/","/assets/**")
-
-
-
                 .permitAll()
 
                 .antMatchers("/ogrenci-panel")
@@ -64,7 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/home")
                 .hasAuthority("ADMIN")
-
 
                 .anyRequest()
                 .authenticated()
@@ -77,12 +67,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                    .defaultSuccessUrl("/home") //HTTP 403'e sebep oluyor.
                     .successHandler(successHandler)
                     .permitAll()
-                    .and()
+                .and()
                     .logout().logoutSuccessUrl("/").permitAll()
-                .and().csrf().disable();
-
+                .and()
+                    .csrf()
+                    .disable();
     }
-
-    @Autowired private LoginSuccessHandler successHandler;
-
 }

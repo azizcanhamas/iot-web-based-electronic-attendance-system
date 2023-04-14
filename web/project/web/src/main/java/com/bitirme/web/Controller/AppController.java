@@ -2,6 +2,7 @@ package com.bitirme.web.Controller;
 
 import com.bitirme.web.Entity.Ogrenci;
 import com.bitirme.web.Entity.Sinif;
+import com.bitirme.web.Entity.User;
 import com.bitirme.web.Repository.SinifRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,7 @@ public class AppController {
     @GetMapping("/ogrenci-islemleri")
     public String ogrenciIslemleri(Model model){
         model.addAttribute("Ogrenci",new Ogrenci());
+        model.addAttribute("User",new User());
         return "ogrenci-islemleri";
     }
 
@@ -68,8 +70,8 @@ public class AppController {
         return "cihaz-islemleri";
     }
 
-    @GetMapping("/profil")
-    public String profil(){
-        return "profil";
+    @GetMapping("/akademisyen-islemleri")
+    public String akademisyenIslemleri(){
+        return "akademisyen-islemleri";
     }
 }
