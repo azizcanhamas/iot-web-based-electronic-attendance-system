@@ -32,16 +32,11 @@ public class CihazController {
 
     @GetMapping("/cihazGuncelle")
     public String cihazGuncelle(@RequestParam("eskiSinif") String eskiSinif,@RequestParam("yeniSinif") String yeniSinif){
-        System.out.println("ESKI SINIF: "+eskiSinif);
-        System.out.println("YENI SINIF: "+yeniSinif);
-
         Cihaz c= cihazRepo.findBySinifKodu(eskiSinif);
-
         if(c!=null){
-            System.out.println("CIHAZ MEVCUT!");
             c.setSinifKodu(yeniSinif);
+            cihazRepo.save(c);
         }
-        cihazRepo.save(c);
         return "redirect:/cihaz-islemleri";
     }
 

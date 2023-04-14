@@ -80,7 +80,7 @@
 										<br>
 										
 
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
                                         <div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 										<br>
 									</form>
@@ -113,7 +113,7 @@
 										<br>
 										
 
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
                                         <div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 										<br>
 									</form>
@@ -131,28 +131,9 @@
 		<!-- END MAIN -->
 		
 	<!-- END WRAPPER -->
-	
-	<!-- <script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
-
-	<script>
-		$(document).ready(function(){
-		$('[name="ekleButton"]').click(function(e)
-        {
-            var MyForm = JSON.stringify($('[id="ekleForm"]').serializeJSON());
-            console.log(MyForm);
-            $.post({
-				contentType: 'application/json',
-                url : "http://localhost:8080/ogrenciEkle",
-                data : MyForm,
-
-            });
-            e.preventDefault();
-        });
-    });
-	</script>
-
+	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 
 </body>
 

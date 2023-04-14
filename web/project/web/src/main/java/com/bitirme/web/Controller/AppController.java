@@ -1,7 +1,9 @@
 package com.bitirme.web.Controller;
 
 import com.bitirme.web.Entity.*;
+import com.bitirme.web.Repository.AkademisyenRepository;
 import com.bitirme.web.Repository.CihazRepository;
+import com.bitirme.web.Repository.DersRepository;
 import com.bitirme.web.Repository.SinifRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,12 @@ public class AppController {
 
     @Autowired
     private CihazRepository cihazRepo;
+
+    @Autowired
+    private AkademisyenRepository akaRepo;
+
+    @Autowired
+    private DersRepository dersRepo;
 
     //====== CONTROLLER FUNCTIONS
     @GetMapping("/")
@@ -63,7 +71,25 @@ public class AppController {
         return "sinif-islemleri";
     }
     @GetMapping("/ders-islemleri")
-    public String dersIslemleri(){
+    public String dersIslemleri(Model model){
+        List<Akademisyen> akaList=akaRepo.findAll();
+        model.addAttribute("akademisyenler",akaList);
+
+        List<Sinif> sinifList=sinifRepo.findAll();
+        model.addAttribute("siniflar",sinifList);
+
+        List<Ders> dersList=dersRepo.findAll();
+        model.addAttribute("dersler",dersList);
+
+        List<Ders>dersTablo=dersList;
+        String[]gunler={"","Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
+        for (Ders i:dersTablo) {
+            List<String> teacher=akaRepo.getPersonelNameandSurname(i.getPersonelNo());
+            String[]splited=teacher.get(0).split(",");
+            i.setPersonelNo(splited[0]+" "+splited[1]+" "+splited[2]);
+            i.setDersGunu(gunler[Integer.parseInt(i.getDersGunu())]);
+        }
+        model.addAttribute("dersTablo",dersTablo);
         return "ders-islemleri";
     }
 

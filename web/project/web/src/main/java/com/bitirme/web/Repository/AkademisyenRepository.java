@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 public interface AkademisyenRepository  extends JpaRepository<Akademisyen,Long> {
@@ -16,4 +17,7 @@ public interface AkademisyenRepository  extends JpaRepository<Akademisyen,Long> 
     @Modifying
     @Query("DELETE FROM Akademisyen a WHERE a.personelNo = ?1")
     public void deleteByPersonelNo(String personelNo);
+
+    @Query("select a.unvan, a.ad, a.soyad from Akademisyen a where a.personelNo=?1")
+    public List<String> getPersonelNameandSurname(String personelNo);
 }

@@ -55,6 +55,47 @@
 				<div class="container-fluid">
 					
 							
+					<div class="panel">
+						<div class="panel-heading">
+							<h2 class="panel-title"><b>Haftalık Ders Programı</b></h2>
+						</div>
+						<div class="panel-body">
+							
+							<div class="row">
+								<div class="col-md-12">
+									<div class="panel-body no-padding">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>Ders Kodu</th>
+													<th>Ders Adı</th>
+													<th>Sorumlu Personel</th>
+													<th>Sınıf Adı</th>
+													<th>Ders Günü</th>
+													<th>Ders Saati</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="ders : ${dersler}">
+													<td><a href="#">[[*{ders.dersKodu}]]</a></td>
+													<td>[[*{ders.dersAdi}]]</td>
+													<td>[[*{ders.personelNo}]]</td>
+													<td>[[*{ders.sinifKodu}]]</td>
+													<td>[[*{ders.dersGunu}]]</td>
+													<td>[[*{ders.dersSaati}]]</td>
+													<!-- <td><span class="label label-success">COMPLETED</span></td> -->
+												</tr>	
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+
 							
 							<!-- Ders Ekle -->
 							<div class="panel">
@@ -65,46 +106,46 @@
 								<div class="panel-body">
 									
 
-									<form>
-										<input type="text" class="form-control" placeholder="Ders Kodu">
-									<br>
+									<form method="get" th:action="@{/dersEkle}">
+										<input type="text" name="dersKodu" class="form-control" placeholder="Ders Kodu">
+										<br>
 
-									<input type="text" class="form-control" placeholder="Ders Adı">
-									<br>
+										<input type="text" name="dersAdi" class="form-control" placeholder="Ders Adı">
+										<br>
 
-									<!-- Burasi Thymeleaf ile generate edilecek. value Personel numarasi olmali (guvenli degil). -->
-									<select class="form-control">
-										<option value="1254789632">Erkan Duman</option>
-									</select>
-									<br>
+										<!-- Tum ogretmenleri listele. -->
+										<select name="personelNo" class="form-control">
+											<option th:value="*{akademisyen.personelNo}" th:each="akademisyen : ${akademisyenler}">[[*{akademisyen.ad}+' '+*{akademisyen.soyad}]]</option>
+										</select>
+										<br>
 
-									<input type="text" class="form-control" placeholder="Ders Kredisi">
-									<br>
+										<input type="text" name="dersKredi"class="form-control" placeholder="Ders Kredisi">
+										<br>
 
-									<input type="text" class="form-control" placeholder="Haftalık Ders Saati">
-									<br>
+										<input type="text" name="haftalikSaat" class="form-control" placeholder="Haftalık Ders Saati">
+										<br>
 
-									<!-- Burasi Thymeleaf ile generate edilecek. value sinif kodu olmali. -->
-									<select class="form-control">
-										<option value="BD-4">Derslik 4</option>
-									</select>
-									<br>
-									
-									<select class="form-control">
-										<option value="1">Pazartesi</option>
-										<option value="2">Salı</option>
-										<option value="3">Çarşamba</option>
-										<option value="4">Perşembe</option>
-										<option value="5">Cuma</option>
-									</select>
-									<br>
+										<!-- Tum siniflari listele. -->
+										<select name="sinifKodu" class="form-control">
+											<option th:value="*{sinif.sinifKodu}" th:each="sinif : ${siniflar}">[[*{sinif.sinifAdi}]]</option>
+										</select>
+										<br>
+										
+										<select name="dersGunu" class="form-control">
+											<option value="1">Pazartesi</option>
+											<option value="2">Salı</option>
+											<option value="3">Çarşamba</option>
+											<option value="4">Perşembe</option>
+											<option value="5">Cuma</option>
+										</select>
+										<br>
 
-									<input type="time" class="form-control" placeholder="Ders Saati">
-									<br>
-									
-									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
-									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-									<br>
+										<input type="time" name="dersSaati" class="form-control" placeholder="Ders Saati">
+										<br>
+										
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
 									</form>
 									
 								</div>
@@ -118,15 +159,15 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
+									<form method="get" th:action="@{/dersSil}">
 
-										<!-- Burası Thymeleaf ile generate edilecek. value ders kodu olmali -->
-										<select class="form-control">
-											<option value="1">Yapay Zeka</option>
+										<!-- Tüm dersleri listele. -->
+										<select name="dersKodu" class="form-control">
+											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
 										</select>
 										<br>
 				
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 										<br>
 									</form>
@@ -142,21 +183,21 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
+									<form method="get" th:action="@{/dersSinifiGuncelle}">
 
-										<!-- Burası Thymeleaf ile generate edilecek. value ders kodu olmali -->
-										<select class="form-control">
-											<option value="1">Yapay Zeka</option>
+										<!-- Tum dersleri listele -->
+										<select name="dersKodu" class="form-control">
+											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
 										</select>
 										<br>
 
-										<!-- Burası Thymeleaf ile generate edilecek. value sinif kodu olmali -->
-										<select class="form-control">
-											<option value="BD-4">Derslik 4</option>
+										<!-- Tum siniflari listele -->
+										<select name="sinifKodu" class="form-control">
+											<option th:value="*{sinif.sinifKodu}" th:each="sinif : ${siniflar}">[[*{sinif.sinifAdi}]]</option>
 										</select>
 										<br>
 				
-									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
@@ -174,15 +215,15 @@
 								</div>
 								<div class="panel-body">
 									
-									<form>
+									<form method="get" th:action="@{/dersTarihiGuncelle}">
 
-										<!-- Burası Thymeleaf ile generate edilecek. value ders kodu olmali -->
-										<select class="form-control">
-											<option value="1">Yapay Zeka</option>
+										<!-- Tum dersleri listele -->
+										<select name="dersKodu" class="form-control">
+											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
 										</select>
 										<br>
 
-										<select class="form-control">
+										<select name="dersGunu" class="form-control">
 											<option value="1">Pazartesi</option>
 											<option value="2">Salı</option>
 											<option value="3">Çarşamba</option>
@@ -191,13 +232,13 @@
 										</select>
 										<br>
 	
-										<input type="time" class="form-control" placeholder="Ders Saati">
+										<input type="time" name="dersSaati" class="form-control" placeholder="Ders Saati">
 										<br>
 
 
 
 				
-									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary" name="ekleButton">Onayla</button></div>
+									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
 									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
 									<br>
 									</form>
