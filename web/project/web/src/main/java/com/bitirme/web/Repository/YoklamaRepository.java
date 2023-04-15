@@ -13,4 +13,7 @@ public interface YoklamaRepository extends JpaRepository<Yoklama,Long> {
 
     @Query("select y from Yoklama y where y.dersKodu=:dersKodu and y.ogrenciNo=:ogrenciNo")
     public List<Yoklama> findByDersKoduAndOgrenciNo(String dersKodu,String ogrenciNo);
+
+    @Query("select count(*) from Yoklama y where y.ogrenciNo=:ogrenciNo and y.katilmaDurumu='YOK'")
+    public String getDevamsizlikSayisiByOgrenciNo(String ogrenciNo);
 }

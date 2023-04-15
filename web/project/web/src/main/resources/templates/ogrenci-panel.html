@@ -32,7 +32,7 @@
 					<ul class="nav">
 						<li><a th:href="@{/ogrenci-panel}" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
 						<li><a th:href="@{/ogrenci-panel}" class="active"><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
-						<li><a th:href="@{/profil}" class=""><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
+						<li><a th:href="@{/ogrenci-profil}" class=""><i class="lnr lnr-user"></i> <span>Profil</span></a></li>
 						<li><a th:href="@{/logout}" class=""><i class="lnr lnr-exit"></i> <span>Oturumu Sonlandır</span></a></li>
 					</ul>
 				</nav>
@@ -59,7 +59,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa-solid fa-person-chalkboard"></i></span>
 										<p>
-											<span class="number">9</span>
+											<span class="number">[[*{aldiginizDersSayisi}]]</span>
 											<span class="title"><b>Aldığınız Ders Sayısı</b></span>
 										</p>
 									</div>
@@ -68,7 +68,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa-solid fa-graduation-cap"></i></span>
 										<p>
-											<span class="number">3</span>
+											<span class="number">[[*{devamsizlikYapilanDersSayisi}]]</span>
 											<span class="title"><b>Devamsızlık Yapılan Ders Sayısı</b></span>
 										</p>
 									</div>
@@ -77,7 +77,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa-solid fa-pencil"></i></span>
 										<p>
-											<span class="number">4</span>
+											<span class="number">[[*{sinifiniz}]]</span>
 											<span class="title"><b>Sınıfınız</b></span>
 										</p>
 									</div>

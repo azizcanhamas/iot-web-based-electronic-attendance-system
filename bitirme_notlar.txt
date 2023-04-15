@@ -2,10 +2,10 @@ Panellerin durumu:
 ====================
 ADMIN:
 	+ Ogrenci
-	- Devam
-		- Geldi Yaz
-		- Gelmedi Yaz
-		- Devamsızlık Sorgula
+	+ Devam
+		+ Geldi Yaz
+		+ Gelmedi Yaz
+		+ Devamsızlık Sorgula
 	+ Ders
 		+ Derse Öğrenci Ekle
 		+ Dersten Öğrenci Çıkar

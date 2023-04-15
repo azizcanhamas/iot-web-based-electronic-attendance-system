@@ -3,6 +3,7 @@ package com.bitirme.web.Controller;
 import com.bitirme.web.Entity.*;
 import com.bitirme.web.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,12 @@ public class AppController {
 
     @Autowired
     private OgrenciRepository ogrenciRepo;
+
+    @Autowired
+    private DersOgrencileriRepository dersOgrencileriRepo;
+
+    @Autowired
+    private YoklamaRepository yoklamaRepo;
 
     //====== CONTROLLER FUNCTIONS
     @GetMapping("/")
@@ -52,8 +59,21 @@ public class AppController {
     }
 
     @GetMapping("/ogrenci-panel")
-    public String ogrenciPanel(){
+    public String ogrenciPanel(Model model){
+        String aldiginizDersSayisi=dersOgrencileriRepo.getCountByOgrenciNo(SecurityContextHolder.getContext().getAuthentication().getName());
+        String devamsizlikYapilanDersSayisi=yoklamaRepo.getDevamsizlikSayisiByOgrenciNo(SecurityContextHolder.getContext().getAuthentication().getName());
+        String sinifiniz=ogrenciRepo.getSinifByOgrenciNo(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        model.addAttribute("aldiginizDersSayisi",aldiginizDersSayisi);
+        model.addAttribute("devamsizlikYapilanDersSayisi",devamsizlikYapilanDersSayisi);
+        model.addAttribute("sinifiniz",sinifiniz);
+
         return "ogrenci-panel";
+    }
+
+    @GetMapping("/ogrenci-profil")
+    public String ogrenciProfil(){
+        return "ogrenci-profil";
     }
 
     @GetMapping("/ogrenci-islemleri")
