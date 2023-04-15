@@ -2,9 +2,15 @@ package com.bitirme.web.Repository;
 
 import com.bitirme.web.Entity.Yoklama;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface YoklamaRepository extends JpaRepository<Yoklama,Long> {
 
+    @Query("select y from Yoklama y where y.dersKodu=:dersKodu and y.dersTarihi=:dersTarihi")
+    public Yoklama findByDersKoduAndDersTarihi(String dersKodu,String dersTarihi);
 
-
+    @Query("select y from Yoklama y where y.dersKodu=:dersKodu and y.ogrenciNo=:ogrenciNo")
+    public List<Yoklama> findByDersKoduAndOgrenciNo(String dersKodu,String ogrenciNo);
 }

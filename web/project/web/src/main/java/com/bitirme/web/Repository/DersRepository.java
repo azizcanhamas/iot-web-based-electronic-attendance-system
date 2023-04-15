@@ -20,4 +20,7 @@ public interface DersRepository extends JpaRepository<Ders,Long> {
 
     @Query("select count(*) from Ders")
     public int getDersSayisi();
+
+    @Query("select d.dersAdi from Ders d where d.dersKodu=:dersKodu")
+    public String getDersAdiByDersKodu(String dersKodu);
 }

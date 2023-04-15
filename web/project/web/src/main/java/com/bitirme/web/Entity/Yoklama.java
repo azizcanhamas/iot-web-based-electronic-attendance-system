@@ -9,7 +9,7 @@ public class Yoklama {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @Column(name = "ogrenci_no")
     private String ogrenciNo;
@@ -23,11 +23,11 @@ public class Yoklama {
     @Column(name = "katilma_durumu")
     private String katilmaDurumu;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

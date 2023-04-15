@@ -19,4 +19,7 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci,Long> {
 
     @Query("select count(*) from Ogrenci")
     public int getOgrenciSayisi();
+
+    @Query("select o.ad,o.soyad from Ogrenci o where o.ogrenciNo=:ogrenciNo")
+    public String getOgrenciAdiSoyadi(String ogrenciNo);
 }

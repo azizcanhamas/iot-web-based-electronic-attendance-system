@@ -65,7 +65,7 @@
 								<div class="panel-body">
 									
 
-									<form th:method="get" th:action="@{/yokYaz}" th:object="${Yoklama}" id="ekleForm">
+									<form th:method="get" th:action="@{/yokYaz}" id="ekleForm">
 										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
 										<br>
 
@@ -97,7 +97,7 @@
 								<div class="panel-body">
 									
 
-									<form th:method="get" th:action="@{/varYaz}" th:object="${Yoklama}" id="ekleForm">
+									<form th:method="get" th:action="@{/varYaz}" id="ekleForm">
 										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
 										<br>
 
@@ -127,7 +127,7 @@
 								<div class="panel-body">
 									
 
-									<form th:method="get" th:action="@{/devamSorgula}" th:object="${Yoklama}" id="ekleForm">
+									<form th:method="get" th:action="@{/devamSorgula}" id="ekleForm">
 										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
 										<br>
 
@@ -158,13 +158,13 @@
 														</tr>
 													</thead>
 													<tbody>
-														<tr th:each="devam : ${devamSorgu}">
-															<td><a href="#">[[*{devamSorgu.ogrenciNo}]]</a></td>
-															<td>[[*{devamSorgu.dersKodu}]]</td>
-															<td>[[*{devamSorgu.devamTarihi}]]</td>
-															<td>[[*{devamSorgu.katilmaDurumu}]]</td>
-															<td>FILL</td>
-															<td>FILL</td>
+														<tr th:each="devam,iterStat : ${devamSorgu}">
+															<td><a href="#">[[*{devam[iterStat.index]}]]</a></td>
+															<td>[[*{devam[iterStat.index+1]}]]</td>
+															<td>[[*{devam[iterStat.index+2]}]]</td>
+															<td>[[*{devam[iterStat.index+3]}]]</td>
+															<td>[[*{devam[iterStat.index+4]}]]</td>
+															<td>[[*{devam[iterStat.index+5]}]]</td>
 															<!-- <td><span class="label label-success">COMPLETED</span></td> -->
 														</tr>	
 													</tbody>
