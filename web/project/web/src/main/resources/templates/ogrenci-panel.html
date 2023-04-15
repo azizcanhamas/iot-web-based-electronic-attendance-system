@@ -98,62 +98,12 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td><a href="#">BMU320</a></td>
-													<td>Gömülü Sistem Tasarımı</td>
-													<td>Erkan DUMAN</td>
-													<td>3 / 4</td>
-													<td>Cuma 11:00</td>
+												<tr th:each="row : ${viewList}">
+													<td th:each="column : ${row}">[[*{column}]]</td>
 													<!-- <td><span class="label label-success">COMPLETED</span></td> -->
 												</tr>
 
-												<tr>
-													<td><a href="#">BMU410</a></td>
-													<td>Bilgisayar Mühendisliği Tasarımı</td>
-													<td>Betül AY</td>
-													<td>1 / 6</td>
-													<td>Salı 08:30</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU230</a></td>
-													<td>Yapay Zeka</td>
-													<td>Mehmet KAYA</td>
-													<td>0 / 3</td>
-													<td>Pazartesi 13:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU240</a></td>
-													<td>Veri Yapıları</td>
-													<td>Gülşah KARADUMAN</td>
-													<td>2 / 5</td>
-													<td>Perşembe 16:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU250</a></td>
-													<td>Sayısal Elektronik Lab.</td>
-													<td>Taner TUNCER</td>
-													<td>2 / 7</td>
-													<td>Salı 17:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU255</a></td>
-													<td>Sayısal Tasarım</td>
-													<td>Güngör YILDIRIM</td>
-													<td>0 / 3</td>
-													<td>Çarşamba 09:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU260</a></td>
-													<td>Bilgi Güvenliği</td>
-													<td>Ertan BÜTÜN</td>
-													<td>1 / 4</td>
-													<td>Perşembe 16:00</td>
-												</tr>
+												
 												
 											</tbody>
 										</table>

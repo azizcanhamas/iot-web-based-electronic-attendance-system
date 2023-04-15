@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -59,15 +61,50 @@ public class AppController {
     }
 
     @GetMapping("/ogrenci-panel")
-    public String ogrenciPanel(Model model){
-        String aldiginizDersSayisi=dersOgrencileriRepo.getCountByOgrenciNo(SecurityContextHolder.getContext().getAuthentication().getName());
-        String devamsizlikYapilanDersSayisi=yoklamaRepo.getDevamsizlikSayisiByOgrenciNo(SecurityContextHolder.getContext().getAuthentication().getName());
-        String sinifiniz=ogrenciRepo.getSinifByOgrenciNo(SecurityContextHolder.getContext().getAuthentication().getName());
+    public String ogrenciPanel(Model model, Principal principal){
+        String username=principal.getName();
+        model.addAttribute("aldiginizDersSayisi",dersOgrencileriRepo.getCountByOgrenciNo(username));
+        model.addAttribute("devamsizlikYapilanDersSayisi",yoklamaRepo.getDevamsizlikSayisiByOgrenciNo(username));
+        model.addAttribute("sinifiniz",ogrenciRepo.getSinifByOgrenciNo(username));
 
-        model.addAttribute("aldiginizDersSayisi",aldiginizDersSayisi);
-        model.addAttribute("devamsizlikYapilanDersSayisi",devamsizlikYapilanDersSayisi);
-        model.addAttribute("sinifiniz",sinifiniz);
 
+        ///////////////////////
+        String []gunler={"","Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
+        List<List<String>> viewList=new ArrayList<>();
+        List<String> personelAdiSoyadi;
+        int devamsizlikHakki,devamsizlikSayisi;
+        Ders ders;
+        String []splited;
+        List<DersOgrencileri> ogrencininDersleriList=dersOgrencileriRepo.findByOgrenciNo(username);
+
+        for(int i=0;i<ogrencininDersleriList.size();i++){
+            List<String> rowList=new ArrayList<>();
+
+            //Ders kodu
+            rowList.add(ogrencininDersleriList.get(i).getDersKodu());
+
+            System.out.println("================= "+ogrencininDersleriList.get(i).getDersKodu());
+            //Ders adi
+            ders=dersRepo.findByDersKodu(ogrencininDersleriList.get(i).getDersKodu());
+            rowList.add(ders.getDersAdi());
+
+            //Personel adi soyadi
+            personelAdiSoyadi=akaRepo.getPersonelNameandSurname(ders.getPersonelNo());
+            splited=personelAdiSoyadi.get(0).split(",");
+            rowList.add(splited[0]+" "+splited[1]+" "+splited[2]);
+
+            //Devamsizlik
+            devamsizlikHakki=(int)(Integer.parseInt(ders.getHaftalikSaat())*14*0.4);
+            devamsizlikSayisi=yoklamaRepo.getDevamsizlikSayisiByOgrenciNoAndDersKodu(username,ogrencininDersleriList.get(i).getDersKodu());
+            rowList.add(devamsizlikSayisi+"/"+devamsizlikHakki);
+
+            //Ders Tarihi ve Saati
+            rowList.add(gunler[Integer.parseInt(ders.getDersGunu())]+" "+ders.getDersSaati());
+
+            viewList.add(rowList);
+        }
+
+        model.addAttribute("viewList",viewList);
         return "ogrenci-panel";
     }
 
