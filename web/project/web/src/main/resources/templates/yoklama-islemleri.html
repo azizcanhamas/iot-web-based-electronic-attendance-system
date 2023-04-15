@@ -33,7 +33,7 @@
 						<li><a th:href="@{/index}" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
 						<li><a th:href="@{/index}" class=""><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
 						<li><a th:href="@{/ogrenci-islemleri}" class=""><i class="lnr lnr-users"></i> <span>Öğrenci İşlemleri</span></a></li>
-						<li><a th:href="@{/devam-islemleri}" class="active"><i class="lnr lnr-paperclip"></i> <span>Devam İşlemleri</span></a></li>
+						<li><a th:href="@{/yoklama-islemleri}" class="active"><i class="lnr lnr-paperclip"></i> <span>Yoklama İşlemleri</span></a></li>
 						<li><a th:href="@{/ders-islemleri}" class=""><i class="lnr lnr-select"></i> <span>Ders İşlemleri</span></a></li>
 						<li><a th:href="@{/sinif-islemleri}" class=""><i class="fa fa-chalkboard"></i> <span>Sınıf İşlemleri</span></a></li>
 						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-laptop-phone"></i> <span>Cihaz İşlemleri</span></a></li>
@@ -56,27 +56,26 @@
 					
 							
 							
-							<!-- "Gelmedi" Yaz -->
+							<!-- "YOK" Yaz -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h2 class="panel-title"><b>"Gelmedi" Yaz</b></h2>
+									<h2 class="panel-title"><b>"YOK" Yaz</b></h2>
 									<p class="panel-subtitle">Öğrenciyi "Derse Gelmedi" olarak işaretlemek için aşağıdaki formu doldurup onaylayınız.</p>
 								</div>
 								<div class="panel-body">
 									
 
-									<form th:method="post" th:action="@{/gelmediYaz}" th:object="${Devamsizlik}" id="ekleForm">
-										<input type="text" name="ogrenci_no" class="form-control" placeholder="Öğrenci No">
+									<form th:method="get" th:action="@{/yokYaz}" th:object="${Yoklama}" id="ekleForm">
+										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
 										<br>
 
-										<select class="form-control" name="ders_kodu">
-											<option value="BMU234">Sayısal İşaret İşleme</option>
-											<option value="BMU345">Mikroişlemciler</option>
-											<option value="BMU456">Derin Öğrenme</option>
+										<!-- Tum dersleri listele -->
+										<select name="dersKodu" class="form-control">
+											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
 										</select>
 										<br>
 
-										<input type="date" name="devamsizlik_tarihi" class="form-control" placeholder="Devamsızlık Tarihi">
+										<input type="date" name="dersTarihi" class="form-control" placeholder="Ders Tarihi">
 										<br>
 										
 
@@ -89,29 +88,27 @@
 							</div>
 
 
-							<!-- "Geldi" Yaz -->
+							<!-- "VAR" Yaz -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h2 class="panel-title"><b>"Geldi" Yaz</b></h2>
+									<h2 class="panel-title"><b>"VAR" Yaz</b></h2>
 									<p class="panel-subtitle">Öğrenciyi "Derse Geldi" olarak işaretlemek için aşağıdaki formu doldurup onaylayınız.</p>
 								</div>
 								<div class="panel-body">
 									
 
-									<form th:method="post" th:action="@{/geldiYaz}" th:object="${Devamsizlik}" id="ekleForm">
-										<input type="text" name="ogrenci_no" class="form-control" placeholder="Öğrenci No">
+									<form th:method="get" th:action="@{/varYaz}" th:object="${Yoklama}" id="ekleForm">
+										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
 										<br>
 
-										<select class="form-control" name="ders_kodu">
-											<option value="BMU234">Sayısal İşaret İşleme</option>
-											<option value="BMU345">Mikroişlemciler</option>
-											<option value="BMU456">Derin Öğrenme</option>
+										<!-- Tum dersleri listele -->
+										<select name="dersKodu" class="form-control">
+											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
 										</select>
 										<br>
 
-										<input type="date" name="devamsizlik_tarihi" class="form-control" placeholder="Devamsızlık Tarihi">
+										<input type="date" name="dersTarihi" class="form-control" placeholder="Ders Tarihi">
 										<br>
-										
 
 										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
                                         <div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
@@ -121,9 +118,63 @@
 								</div>
 							</div>
 
-						
+							<!-- Devam Sorgula -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h2 class="panel-title"><b>Devam Sorgula</b></h2>
+									<p class="panel-subtitle">Öğrencinin devam durumu sorgulamak için aşağıdaki formu doldurup onaylayınız.</p>
+								</div>
+								<div class="panel-body">
+									
+
+									<form th:method="get" th:action="@{/devamSorgula}" th:object="${Yoklama}" id="ekleForm">
+										<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
+										<br>
+
+										<!-- Tum dersleri listele -->
+										<select name="dersKodu" class="form-control">
+											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
+										</select>
+										<br>
+
+										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+                                        <div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+										<br>
+									</form>
+
+
+									<div class="row" th:if="${devamSorgu!=null}">
+										<div class="col-md-12">
+											<div class="panel-body no-padding">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th>Öğrenci Numarası</th>
+															<th>Adı</th>
+															<th>Soyadı</th>
+															<th>Ders Adı</th>
+															<th>Ders Tarihi</th>
+															<th>Katılma Durumu</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="devam : ${devamSorgu}">
+															<td><a href="#">[[*{devamSorgu.ogrenciNo}]]</a></td>
+															<td>[[*{devamSorgu.dersKodu}]]</td>
+															<td>[[*{devamSorgu.devamTarihi}]]</td>
+															<td>[[*{devamSorgu.katilmaDurumu}]]</td>
+															<td>FILL</td>
+															<td>FILL</td>
+															<!-- <td><span class="label label-success">COMPLETED</span></td> -->
+														</tr>	
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>		
+								</div>
+							</div>	
 					<!-- END OVERVIEW -->	
-					
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

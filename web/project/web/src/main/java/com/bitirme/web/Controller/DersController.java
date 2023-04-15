@@ -1,6 +1,8 @@
 package com.bitirme.web.Controller;
 
 import com.bitirme.web.Entity.Ders;
+import com.bitirme.web.Entity.DersOgrencileri;
+import com.bitirme.web.Repository.DersOgrencileriRepository;
 import com.bitirme.web.Repository.DersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,9 @@ public class DersController {
 
     @Autowired
     private DersRepository dersRepo;
+
+    @Autowired
+    private DersOgrencileriRepository dersOgrencileriRepo;
 
     @GetMapping("/dersEkle")
     public String dersEkle(Ders ders){
@@ -41,6 +46,21 @@ public class DersController {
         d.setDersGunu(dersGunu);
         d.setDersSaati(dersSaati);
         dersRepo.save(d);
+        return "redirect:/ders-islemleri";
+    }
+
+
+    //Kayitli bir derse kayitli bir ogrenciyi eklemek icin
+    //Kayit islemi DersOgrencileri tablosuna gerceklesmektedir.
+    @GetMapping("/derseOgrenciEkle")
+    public String derseOgrenciEkle(DersOgrencileri dersOgrencileri){
+        dersOgrencileriRepo.save(dersOgrencileri);
+        return "redirect:/ders-islemleri";
+    }
+
+    @GetMapping("/derstenOgrenciCikar")
+    public String derstenOgrenciCikar(DersOgrencileri dersOgrencileri){
+        dersOgrencileriRepo.deleteByOgrenciNo(dersOgrencileri.getOgrenciNo(),dersOgrencileri.getDersKodu());
         return "redirect:/ders-islemleri";
     }
 

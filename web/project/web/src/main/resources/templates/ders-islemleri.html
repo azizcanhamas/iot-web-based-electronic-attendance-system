@@ -33,7 +33,7 @@
 						<li><a th:href="@{/index}" class=""><img src="assets/img/navbar_logo.png" id="navbar_logo"></a></li>
 						<li><a th:href="@{/index}" class=""><i class="lnr lnr-home"></i> <span>Ana Sayfa</span></a></li>
 						<li><a th:href="@{/ogrenci-islemleri}" class=""><i class="lnr lnr-users"></i> <span>Öğrenci İşlemleri</span></a></li>
-						<li><a th:href="@{/devam-islemleri}" class=""><i class="lnr lnr-paperclip"></i> <span>Devam İşlemleri</span></a></li>
+						<li><a th:href="@{/yoklama-islemleri}" class=""><i class="lnr lnr-paperclip"></i> <span>Yoklama İşlemleri</span></a></li>
 						<li><a th:href="@{/ders-islemleri}" class="active"><i class="lnr lnr-select"></i> <span>Ders İşlemleri</span></a></li>
 						<li><a th:href="@{/sinif-islemleri}" class=""><i class="fa fa-chalkboard"></i> <span>Sınıf İşlemleri</span></a></li>
 						<li><a th:href="@{/cihaz-islemleri}" class=""><i class="lnr lnr-laptop-phone"></i> <span>Cihaz İşlemleri</span></a></li>
@@ -89,162 +89,214 @@
 										</table>
 									</div>
 								</div>
-								
-							</div>
+							</div>							
+						</div>
+					</div>
+
+
+					<!-- Derse Öğrenci Ekle -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h2 class="panel-title"><b>Derse Öğrenci Ekle</b></h2>
+							<p class="panel-subtitle">Derse öğrenci eklemek için aşağıdaki formu doldurup onaylayınız.</p>
+						</div>
+						<div class="panel-body">
 							
+
+							<form method="get" th:action="@{/derseOgrenciEkle}">
+								<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
+								<br>
+
+								<!-- Tum dersleri listele -->
+								<select name="dersKodu" class="form-control">
+									<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
+								</select>
+								<br>
+								
+								<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+								<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+								<br>
+							</form>
+							
+						</div>
+					</div>
+
+					<!-- Dersten Öğrenci Çıkar -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h2 class="panel-title"><b>Dersten Öğrenci Çıkar</b></h2>
+							<p class="panel-subtitle">Dersten öğrenci çıkarmak için aşağıdaki formu doldurup onaylayınız.</p>
+						</div>
+						<div class="panel-body">
+							
+
+							<form method="get" th:action="@{/derstenOgrenciCikar}">
+								<input type="text" name="ogrenciNo" class="form-control" placeholder="Öğrenci Numarası">
+								<br>
+
+								<!-- Tum dersleri listele -->
+								<select name="dersKodu" class="form-control">
+									<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
+								</select>
+								<br>
+								
+								<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+								<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+								<br>
+							</form>
 							
 						</div>
 					</div>
 
 							
-							<!-- Ders Ekle -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h2 class="panel-title"><b>Ders Ekle</b></h2>
-									<p class="panel-subtitle">Ders eklemek için aşağıdaki formu doldurup onaylayınız.</p>
-								</div>
-								<div class="panel-body">
-									
+					<!-- Ders Ekle -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h2 class="panel-title"><b>Ders Ekle</b></h2>
+							<p class="panel-subtitle">Ders eklemek için aşağıdaki formu doldurup onaylayınız.</p>
+						</div>
+						<div class="panel-body">
+							
 
-									<form method="get" th:action="@{/dersEkle}">
-										<input type="text" name="dersKodu" class="form-control" placeholder="Ders Kodu">
-										<br>
+							<form method="get" th:action="@{/dersEkle}">
+								<input type="text" name="dersKodu" class="form-control" placeholder="Ders Kodu">
+								<br>
 
-										<input type="text" name="dersAdi" class="form-control" placeholder="Ders Adı">
-										<br>
+								<input type="text" name="dersAdi" class="form-control" placeholder="Ders Adı">
+								<br>
 
-										<!-- Tum ogretmenleri listele. -->
-										<select name="personelNo" class="form-control">
-											<option th:value="*{akademisyen.personelNo}" th:each="akademisyen : ${akademisyenler}">[[*{akademisyen.ad}+' '+*{akademisyen.soyad}]]</option>
-										</select>
-										<br>
+								<!-- Tum ogretmenleri listele. -->
+								<select name="personelNo" class="form-control">
+									<option th:value="*{akademisyen.personelNo}" th:each="akademisyen : ${akademisyenler}">[[*{akademisyen.ad}+' '+*{akademisyen.soyad}]]</option>
+								</select>
+								<br>
 
-										<input type="text" name="dersKredi"class="form-control" placeholder="Ders Kredisi">
-										<br>
+								<input type="text" name="dersKredi"class="form-control" placeholder="Ders Kredisi">
+								<br>
 
-										<input type="text" name="haftalikSaat" class="form-control" placeholder="Haftalık Ders Saati">
-										<br>
+								<input type="text" name="haftalikSaat" class="form-control" placeholder="Haftalık Ders Saati">
+								<br>
 
-										<!-- Tum siniflari listele. -->
-										<select name="sinifKodu" class="form-control">
-											<option th:value="*{sinif.sinifKodu}" th:each="sinif : ${siniflar}">[[*{sinif.sinifAdi}]]</option>
-										</select>
-										<br>
-										
-										<select name="dersGunu" class="form-control">
-											<option value="1">Pazartesi</option>
-											<option value="2">Salı</option>
-											<option value="3">Çarşamba</option>
-											<option value="4">Perşembe</option>
-											<option value="5">Cuma</option>
-										</select>
-										<br>
+								<!-- Tum siniflari listele. -->
+								<select name="sinifKodu" class="form-control">
+									<option th:value="*{sinif.sinifKodu}" th:each="sinif : ${siniflar}">[[*{sinif.sinifAdi}]]</option>
+								</select>
+								<br>
+								
+								<select name="dersGunu" class="form-control">
+									<option value="1">Pazartesi</option>
+									<option value="2">Salı</option>
+									<option value="3">Çarşamba</option>
+									<option value="4">Perşembe</option>
+									<option value="5">Cuma</option>
+								</select>
+								<br>
 
-										<input type="time" name="dersSaati" class="form-control" placeholder="Ders Saati">
-										<br>
-										
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
-										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-										<br>
-									</form>
-									
-								</div>
-							</div>
+								<input type="time" name="dersSaati" class="form-control" placeholder="Ders Saati">
+								<br>
+								
+								<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+								<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+								<br>
+							</form>
+							
+						</div>
+					</div>
 
-							<!-- Ders Sil -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h2 class="panel-title"><b>Ders Sil</b></h2>
-									<p class="panel-subtitle">Ders silmek için ders seçip onaylayınız.</p>
-								</div>
-								<div class="panel-body">
-									
-									<form method="get" th:action="@{/dersSil}">
+					<!-- Ders Sil -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h2 class="panel-title"><b>Ders Sil</b></h2>
+							<p class="panel-subtitle">Ders silmek için ders seçip onaylayınız.</p>
+						</div>
+						<div class="panel-body">
+							
+							<form method="get" th:action="@{/dersSil}">
 
-										<!-- Tüm dersleri listele. -->
-										<select name="dersKodu" class="form-control">
-											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
-										</select>
-										<br>
-				
-										<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
-										<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-										<br>
-									</form>
-									
-								</div>
-							</div>
+								<!-- Tüm dersleri listele. -->
+								<select name="dersKodu" class="form-control">
+									<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
+								</select>
+								<br>
+		
+								<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+								<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+								<br>
+							</form>
+							
+						</div>
+					</div>
 
-							<!-- Ders Sınıfı Güncelle -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h2 class="panel-title"><b>Ders Sınıfı Güncelle</b></h2>
-									<p class="panel-subtitle">Dersin işleneceği sınıfı güncellemek için ders ve sınıfı seçip onaylamalısınız.</p>
-								</div>
-								<div class="panel-body">
-									
-									<form method="get" th:action="@{/dersSinifiGuncelle}">
+					<!-- Ders Sınıfı Güncelle -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h2 class="panel-title"><b>Ders Sınıfı Güncelle</b></h2>
+							<p class="panel-subtitle">Dersin işleneceği sınıfı güncellemek için ders ve sınıfı seçip onaylamalısınız.</p>
+						</div>
+						<div class="panel-body">
+							
+							<form method="get" th:action="@{/dersSinifiGuncelle}">
 
-										<!-- Tum dersleri listele -->
-										<select name="dersKodu" class="form-control">
-											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
-										</select>
-										<br>
+								<!-- Tum dersleri listele -->
+								<select name="dersKodu" class="form-control">
+									<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
+								</select>
+								<br>
 
-										<!-- Tum siniflari listele -->
-										<select name="sinifKodu" class="form-control">
-											<option th:value="*{sinif.sinifKodu}" th:each="sinif : ${siniflar}">[[*{sinif.sinifAdi}]]</option>
-										</select>
-										<br>
-				
-									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
-									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-									<br>
-									</form>
-									
-								</div>
-							</div>
-
-
-
-							<!-- Ders Tarihi Güncelle -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h2 class="panel-title"><b>Ders Tarihi Güncelle</b></h2>
-									<p class="panel-subtitle">Ders tarihi güncellemek için ders ve tarihi seçmeli ardından onaylamalısınız.</p>
-								</div>
-								<div class="panel-body">
-									
-									<form method="get" th:action="@{/dersTarihiGuncelle}">
-
-										<!-- Tum dersleri listele -->
-										<select name="dersKodu" class="form-control">
-											<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
-										</select>
-										<br>
-
-										<select name="dersGunu" class="form-control">
-											<option value="1">Pazartesi</option>
-											<option value="2">Salı</option>
-											<option value="3">Çarşamba</option>
-											<option value="4">Perşembe</option>
-											<option value="5">Cuma</option>
-										</select>
-										<br>
-	
-										<input type="time" name="dersSaati" class="form-control" placeholder="Ders Saati">
-										<br>
+								<!-- Tum siniflari listele -->
+								<select name="sinifKodu" class="form-control">
+									<option th:value="*{sinif.sinifKodu}" th:each="sinif : ${siniflar}">[[*{sinif.sinifAdi}]]</option>
+								</select>
+								<br>
+		
+							<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+							<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+							<br>
+							</form>
+							
+						</div>
+					</div>
 
 
 
-				
-									<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
-									<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
-									<br>
-									</form>
-									
-								</div>
-							</div>
+					<!-- Ders Tarihi Güncelle -->
+					<div class="panel">
+						<div class="panel-heading">
+							<h2 class="panel-title"><b>Ders Tarihi Güncelle</b></h2>
+							<p class="panel-subtitle">Ders tarihi güncellemek için ders ve tarihi seçmeli ardından onaylamalısınız.</p>
+						</div>
+						<div class="panel-body">
+							
+							<form method="get" th:action="@{/dersTarihiGuncelle}">
+
+								<!-- Tum dersleri listele -->
+								<select name="dersKodu" class="form-control">
+									<option th:value="*{ders.dersKodu}" th:each="ders : ${dersler}">[[*{ders.dersAdi}]]</option>
+								</select>
+								<br>
+
+								<select name="dersGunu" class="form-control">
+									<option value="1">Pazartesi</option>
+									<option value="2">Salı</option>
+									<option value="3">Çarşamba</option>
+									<option value="4">Perşembe</option>
+									<option value="5">Cuma</option>
+								</select>
+								<br>
+
+								<input type="time" name="dersSaati" class="form-control" placeholder="Ders Saati">
+								<br>
+
+
+
+		
+							<div class="col-md-6 text-right"><button type="submit" class="btn btn-primary">Onayla</button></div>
+							<div class="col-md-6"><input type="reset" class="btn btn-primary" value="Temizle"></div>
+							<br>
+							</form>
+							
+						</div>
+					</div>
 
 
 

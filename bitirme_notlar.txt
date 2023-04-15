@@ -1,0 +1,25 @@
+Panellerin durumu:
+====================
+ADMIN:
+	+ Ogrenci
+	- Devam
+		- Geldi Yaz
+		- Gelmedi Yaz
+		- Devamsızlık Sorgula
+	+ Ders
+		+ Derse Öğrenci Ekle
+		+ Dersten Öğrenci Çıkar
+	+ Sınıf
+	+ Cihaz
+	+ Akademisyen
+	- Ana Sayfa (Cihaz istekleri loglanacak, tablo create)
+	+ Oturumu sonlandır
+
+OGRENCI:
+	- Ana Sayfa
+	- Profil
+	+ Oturumu Sonlandır
+
+* Ogrenci tablosundaki parametre bilgisi kaldırılmalı.
+Ogrenci kaydetme işlemi sırasında parola ayrı bir parametre
+olarak nesneden bağımsız gönderilmeli.

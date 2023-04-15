@@ -62,9 +62,11 @@ public class AppController {
         return "ogrenci-islemleri";
     }
 
-    @GetMapping("/devam-islemleri")
-    public String devamIslemleri(){
-        return "devam-islemleri";
+    @GetMapping("/yoklama-islemleri")
+    public String yoklamaIslemleri(Model model){
+        List<Ders> dersList=dersRepo.findAll();
+        model.addAttribute("dersler",dersList);
+        return "yoklama-islemleri";
     }
 
     @GetMapping("/sinif-islemleri")
