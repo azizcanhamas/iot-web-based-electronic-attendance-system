@@ -68,7 +68,6 @@ public class AppController {
         model.addAttribute("sinifiniz",ogrenciRepo.getSinifByOgrenciNo(username));
 
 
-        ///////////////////////
         String []gunler={"","Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
         List<List<String>> viewList=new ArrayList<>();
         List<String> personelAdiSoyadi;
@@ -100,7 +99,6 @@ public class AppController {
 
             //Ders Tarihi ve Saati
             rowList.add(gunler[Integer.parseInt(ders.getDersGunu())]+" "+ders.getDersSaati());
-
             viewList.add(rowList);
         }
 
@@ -109,7 +107,9 @@ public class AppController {
     }
 
     @GetMapping("/ogrenci-profil")
-    public String ogrenciProfil(){
+    public String ogrenciProfil(Model model,Principal principal){
+        Ogrenci ogrenci=ogrenciRepo.findByOgrenciNo(principal.getName());
+        model.addAttribute("Ogrenci",ogrenci);
         return "ogrenci-profil";
     }
 
