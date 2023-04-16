@@ -53,7 +53,7 @@ public class AppController {
 
         /////////////////////
 
-        String []gunler={"","Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
+        String []gunler={"Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
         List<List<String>> viewList=new ArrayList<>();
         List<String> personelAdiSoyadi;
         int devamsizlikHakki,devamsizlikSayisi;
@@ -119,7 +119,7 @@ public class AppController {
         model.addAttribute("sinifiniz",ogrenciRepo.getSinifByOgrenciNo(username));
 
 
-        String []gunler={"","Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
+        String []gunler={"Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
         List<List<String>> viewList=new ArrayList<>();
         List<String> personelAdiSoyadi;
         int devamsizlikHakki,devamsizlikSayisi;
@@ -133,7 +133,6 @@ public class AppController {
             //Ders kodu
             rowList.add(ogrencininDersleriList.get(i).getDersKodu());
 
-            System.out.println("================= "+ogrencininDersleriList.get(i).getDersKodu());
             //Ders adi
             ders=dersRepo.findByDersKodu(ogrencininDersleriList.get(i).getDersKodu());
             rowList.add(ders.getDersAdi());
@@ -195,7 +194,7 @@ public class AppController {
         model.addAttribute("dersler",dersList);
 
         List<Ders>dersTablo=dersList;
-        String[]gunler={"","Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
+        String[]gunler={"Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
         for (Ders i:dersTablo) {
             List<String> teacher=akaRepo.getPersonelNameandSurname(i.getPersonelNo());
             String[]splited=teacher.get(0).split(",");

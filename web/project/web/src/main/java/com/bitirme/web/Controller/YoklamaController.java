@@ -26,16 +26,18 @@ public class YoklamaController {
 
     @GetMapping("/yokYaz")
     public String yokYaz(Yoklama yoklama){
-        Yoklama resultYoklama=yoklamaRepo.findByDersKoduAndDersTarihi(yoklama.getDersKodu(),yoklama.getDersTarihi());
-        resultYoklama.setKatilmaDurumu("YOK");
+        yoklama.setDersTarihi(yoklama.getDersTarihi().replace("-","/"));
+        Yoklama resultYoklama=yoklamaRepo.findByDersKoduAndDersTarihiAndOgrenciNo(yoklama.getDersKodu(),yoklama.getDersTarihi(),yoklama.getOgrenciNo());
+        resultYoklama.setKatilmaDurumu("KATILMADI");
         yoklamaRepo.save(resultYoklama);
         return "redirect:/yoklama-islemleri";
     }
 
     @GetMapping("/varYaz")
     public String varYaz(Yoklama yoklama){
-        Yoklama resultYoklama=yoklamaRepo.findByDersKoduAndDersTarihi(yoklama.getDersKodu(),yoklama.getDersTarihi());
-        resultYoklama.setKatilmaDurumu("VAR");
+        yoklama.setDersTarihi(yoklama.getDersTarihi().replace("-","/"));
+        Yoklama resultYoklama=yoklamaRepo.findByDersKoduAndDersTarihiAndOgrenciNo(yoklama.getDersKodu(),yoklama.getDersTarihi(),yoklama.getOgrenciNo());
+        resultYoklama.setKatilmaDurumu("KATILDI");
         yoklamaRepo.save(resultYoklama);
         return "redirect:/yoklama-islemleri";
     }
