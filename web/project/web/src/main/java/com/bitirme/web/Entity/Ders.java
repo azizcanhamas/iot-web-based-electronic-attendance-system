@@ -1,6 +1,9 @@
 package com.bitirme.web.Entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Ders")
@@ -26,6 +29,7 @@ public class Ders {
 
     @Column(name="sinif_kodu")
     private String sinifKodu;
+
 
     @Column(name="ders_gunu")
     private String dersGunu;

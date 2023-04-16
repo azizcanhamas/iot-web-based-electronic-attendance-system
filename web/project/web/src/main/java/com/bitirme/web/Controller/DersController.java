@@ -43,8 +43,8 @@ public class DersController {
                                      @RequestParam("dersGunu")String dersGunu,
                                      @RequestParam("dersSaati")String dersSaati){
         Ders d= dersRepo.findByDersKodu(dersKodu);
-        d.setDersGunu(dersGunu);
-        d.setDersSaati(dersSaati);
+        //d.setDersGunu(dersGunu);
+        //d.setDersSaati(dersSaati);
         dersRepo.save(d);
         return "redirect:/ders-islemleri";
     }

@@ -112,8 +112,7 @@
 												<tr th:each="row : ${viewList}">
 													<td th:each="column : ${row}">[[*{column}]]</td>
 													<!-- <td><span class="label label-success">COMPLETED</span></td> -->
-												</tr>										
-												
+												</tr>											
 											</tbody>
 										</table>
 									</div>
@@ -135,6 +134,10 @@
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script>
+		var cihazTokenElement=document.querySelector('td:nth-child(1)');
+		cihazTokenElement.innerText=cihazTokenElement.innerText.substring(0,24);
+	</script>
 
 
 </body>

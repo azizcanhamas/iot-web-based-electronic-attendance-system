@@ -20,5 +20,7 @@ public interface CihazRepository extends JpaRepository<Cihaz,Long> {
     @Query("SELECT c.sinifKodu FROM Cihaz c WHERE c.cihazToken = ?1")
     public String getSinifKoduByCihazToken(String sinifKodu);
 
+    @Query("SELECT c FROM Cihaz c WHERE c.cihazToken = ?1")
+    public Cihaz findByCihazToken(String cihazToken);
 
 }
