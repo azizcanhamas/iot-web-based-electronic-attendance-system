@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 public interface DersRepository extends JpaRepository<Ders,Long> {
 
@@ -28,4 +29,7 @@ public interface DersRepository extends JpaRepository<Ders,Long> {
 
     @Query("select d from Ders d where sinifKodu=:sinifKodu and dersGunu=:dersGunu and dersSaati=:dersSaati")
     public Ders getCurrentLesson(String sinifKodu,String dersGunu,String dersSaati);
+
+    @Query("select d from Ders d where dersGunu=:dersGunu")
+    public List<Ders> findByDersGunu(String dersGunu);
 }

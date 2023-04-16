@@ -26,4 +26,7 @@ public interface DersOgrencileriRepository  extends JpaRepository<DersOgrenciler
     @Query("select do from DersOgrencileri do where do.ogrenciNo=:ogrenciNo")
     public List<DersOgrencileri> findByOgrenciNo(String ogrenciNo);
 
+    @Query("select do from DersOgrencileri do where do.dersKodu=:dersKodu")
+    public List<DersOgrencileri> findByDersKodu(String dersKodu);
+
 }
