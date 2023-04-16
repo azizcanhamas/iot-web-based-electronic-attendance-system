@@ -31,6 +31,7 @@ public class DeviceAPI {
     @Autowired
     private DersRepository dersRepo;
 
+    //Kart okutuldugu zaman Cihaz tarafindan bu fonksiyon tetiklenecektir.
     @GetMapping("/api")
     public Map<String,String> varYaz(CihazIstekleri cihazIstek) throws ParseException {
 
@@ -41,25 +42,23 @@ public class DeviceAPI {
         HashMap<String, String> map = new HashMap<>();
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         for(Cihaz tmp:c){
+            // Cihazin tabloda kayitli olup olmadiginin kontrolu
+            // Token tabloda encrypted olarak tutulmaktadir.
             if(encoder.matches(cihazIstek.getCihazToken(),
                     tmp.getCihazToken())){
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
                 cihazIstek.setIstekZamani(now.format(dtf));
+                //cihazin hangi sinifta calistigi biliniyor.
                 cihazIstek.setSinifKodu(tmp.getSinifKodu());
                 cihazIstek.setCihazToken(tmp.getCihazToken());
 
-                //dersKodu
+                //Ilgili sinifta islenen dersin kodunu bul.
                 String gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue());
                 String saat= String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
                 Ders d=dersRepo.getCurrentLesson(tmp.getSinifKodu(),gunNumber,saat+":00");
                 cihazIstek.setDersKodu(d.getDersKodu());
-
-                //personelNo
                 cihazIstek.setPersonelNo(d.getPersonelNo());
-
-                //sinifKodu
-                cihazIstek.setSinifKodu(tmp.getSinifKodu());
 
                 cihazIstekleriRepo.save(cihazIstek);
                 map.put("message","Yoklama alındı!");
