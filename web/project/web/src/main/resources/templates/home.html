@@ -96,70 +96,23 @@
 										<table class="table table-striped">
 											<thead>
 												<tr>
-													<th><b>Ders Kodu</b></th>
+													<th colspan="8" style="text-align: center;background-color: #79113EE6; color: white;">Cihazlar Tarafından Yapılan İstekler</th>
+												</tr>
+												<tr>
+													<th><b>Cihaz Token</b></th>
+													<th><b>Cihaz Sınıf Kodu</b></th>
 													<th><b>Ders Adı</b></th>
 													<th><b>Ders Sorumlusu</b></th>
-													<th><b>Öğrenci Sayısı</b></th>
-													<th><b>Ders Tarihi ve Saati</b></th>
+													<th><b>Öğrenci RFID Kodu</b></th>
+													<th><b>Öğrenci Adı-Soyadı</b></th>
+													<th><b>İstek Zamanı</b></th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td><a href="#">BMU320</a></td>
-													<td>Gömülü Sistem Tasarımı</td>
-													<td>Erkan Duman</td>
-													<td>34</td>
-													<td>Cuma 11:00</td>
+												<tr th:each="row : ${viewList}">
+													<td th:each="column : ${row}">[[*{column}]]</td>
 													<!-- <td><span class="label label-success">COMPLETED</span></td> -->
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU410</a></td>
-													<td>Bilgisayar Mühendisliği Tasarımı</td>
-													<td>Erkan Duman</td>
-													<td>56</td>
-													<td>Salı 08:30</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU230</a></td>
-													<td>Yapay Zeka</td>
-													<td>Erkan Duman</td>
-													<td>64</td>
-													<td>Pazartesi 13:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU240</a></td>
-													<td>Veri Yapıları</td>
-													<td>Erkan Duman</td>
-													<td>34</td>
-													<td>Perşembe 16:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU250</a></td>
-													<td>Sayısal Elektronik Lab.</td>
-													<td>Erkan Duman</td>
-													<td>24</td>
-													<td>Salı 17:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU255</a></td>
-													<td>Sayısal Tasarım</td>
-													<td>Erkan Duman</td>
-													<td>41</td>
-													<td>Çarşamba 09:00</td>
-												</tr>
-
-												<tr>
-													<td><a href="#">BMU260</a></td>
-													<td>Bilgi Güvenliği</td>
-													<td>Erkan Duman</td>
-													<td>68</td>
-													<td>Perşembe 16:00</td>
-												</tr>
+												</tr>										
 												
 											</tbody>
 										</table>

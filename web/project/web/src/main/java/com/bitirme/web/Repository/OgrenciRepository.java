@@ -23,6 +23,10 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci,Long> {
     @Query("select o.ad,o.soyad from Ogrenci o where o.ogrenciNo=:ogrenciNo")
     public String getOgrenciAdiSoyadi(String ogrenciNo);
 
+
+    @Query("select o.ad,o.soyad from Ogrenci o where o.rfidKodu=:rfidKodu")
+    public String getOgrenciAdiSoyadiByRfidKodu(String rfidKodu);
+
     @Query("select o.sinifi from Ogrenci o where o.ogrenciNo=:ogrenciNo")
     public String getSinifByOgrenciNo(String ogrenciNo);
 

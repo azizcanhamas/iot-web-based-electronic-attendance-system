@@ -36,6 +36,9 @@ public class AppController {
     @Autowired
     private YoklamaRepository yoklamaRepo;
 
+    @Autowired
+    private CihazIstekleriRepository cihazIstekleriRepo;
+
     //====== CONTROLLER FUNCTIONS
     @GetMapping("/")
     public String empty(){
@@ -47,6 +50,54 @@ public class AppController {
         model.addAttribute("dersSayisi",dersRepo.getDersSayisi());
         model.addAttribute("ogrenciSayisi",ogrenciRepo.getOgrenciSayisi());
         model.addAttribute("akademisyenSayisi",akaRepo.getAkademisyenSayisi());
+
+        /////////////////////
+
+        String []gunler={"","Pazartesi","Salı","Çarşamba","Perşembe","Cuma"};
+        List<List<String>> viewList=new ArrayList<>();
+        List<String> personelAdiSoyadi;
+        int devamsizlikHakki,devamsizlikSayisi;
+        Ders ders;
+        String []splited;
+        String sinifAdi,ogrenciAdiSoyadi;
+        List<CihazIstekleri> cihazIstekleriList=cihazIstekleriRepo.findAll();
+
+        for(int i=0;i<cihazIstekleriList.size();i++){
+            List<String> rowList=new ArrayList<>();
+
+            //Cihaz token
+            rowList.add(cihazIstekleriList.get(i).getCihazToken());
+
+            //Cihaz sinifi
+            rowList.add(cihazIstekleriList.get(i).getDersKodu());
+
+            // Ders Adi
+            rowList.add(dersRepo.getDersAdiByDersKodu(cihazIstekleriList.get(i).getDersKodu()));
+
+            //Ders Sorumlusu
+            personelAdiSoyadi=akaRepo.getPersonelNameandSurname(cihazIstekleriList.get(i).getPersonelNo());
+            splited=personelAdiSoyadi.get(0).split(",");
+            rowList.add(splited[0]+" "+splited[1]+" "+splited[2]);
+
+            //RFID Kodu
+            rowList.add(cihazIstekleriList.get(i).getRfidKodu());
+
+            //Ogrenci Adi-Soyadi
+            ogrenciAdiSoyadi=ogrenciRepo.getOgrenciAdiSoyadiByRfidKodu(cihazIstekleriList.get(i).getRfidKodu());
+            splited=ogrenciAdiSoyadi.split(",");
+            rowList.add(splited[0]+" "+splited[1]);
+
+            //Istek Zamani
+            rowList.add(cihazIstekleriList.get(i).getIstekZamani());
+
+            viewList.add(rowList);
+        }
+
+        model.addAttribute("viewList",viewList);
+
+        //////////////////////
+
+
         return "home";
     }
 

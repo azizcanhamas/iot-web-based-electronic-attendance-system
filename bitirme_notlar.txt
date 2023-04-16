@@ -8,7 +8,7 @@ Bir dersin yoklaması, dersin başlangıcından 15 dakika
 ileriye kadar olan zaman diliminde alınmalı.
 https://medium.com/@mevlutsungur/spring-boot-ile-planl%C4%B1-g%C3%B6rev-%C3%A7al%C4%B1%C5%9Ft%C4%B1rma-53ce5973a54a
 
-* Temp bir tabloda cihazlardan gelen istekler bufferlanacak.
+* (Istek tablosu kullanilabilir gibi duruyor.)Temp bir tabloda cihazlardan gelen istekler bufferlanacak.
 X dakika aralıklarla bu tablodaki kayıtlar ile ilgili kontroller gerçekleşecek ve asıl tablolara aktarılacak. Ardından bu tablo boşaltılacak. Yoklama süresi dolan ders ile ilgili istekler bu tablodan direkt silinecek, dolmayanlar X dakikanın dolmasını bekleyecek ardından silinecek.
 
 * Cihazın hangi dersi takip ettiği Cihaz tablosundaki Sınıf bilgisinden yola çıkılarak bulunacaktır.

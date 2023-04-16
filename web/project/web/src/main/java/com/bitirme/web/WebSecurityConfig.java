@@ -1,15 +1,13 @@
 package com.bitirme.web;
 
-import javax.sql.DataSource;
-
 import com.bitirme.web.CustomUserDetails.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -44,33 +42,76 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    // ================ WITHOUT API AUTHENTICATION ==================
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .antMatchers("/","/assets/**")
+//                .permitAll()
+//
+//                .antMatchers("/ogrenci-panel")
+//                .hasAuthority("USER")
+//
+//                .antMatchers("/home")
+//                .hasAuthority("ADMIN")
+//
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .usernameParameter("username")
+//                    .passwordParameter("password")
+//                    .loginProcessingUrl("/process-login")
+////                    .defaultSuccessUrl("/home") //HTTP 403'e sebep oluyor.
+//                    .successHandler(successHandler)
+//                    .permitAll()
+//                .and()
+//                    .logout().logoutSuccessUrl("/").permitAll()
+//                .and()
+//                    .csrf()
+//                    .disable();
+//    }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/","/assets/**")
-                .permitAll()
+        http
+                // ===== API CONFIGURATION
+                .httpBasic()
+                    .and()
+                        .authorizeRequests()
+                        .antMatchers(HttpMethod.GET,"/api").hasAuthority("ADMIN")
+                    .and()
+                        .csrf().disable()
 
-                .antMatchers("/ogrenci-panel")
-                .hasAuthority("USER")
 
-                .antMatchers("/home")
-                .hasAuthority("ADMIN")
+                // ===== VIEW CONFIGURATION
+                .authorizeRequests()
+                    .antMatchers("/","/assets/**")
+                    .permitAll()
 
-                .anyRequest()
-                .authenticated()
+                    .antMatchers("/ogrenci-panel")
+                    .hasAuthority("USER")
+
+                    .antMatchers("/home")
+                    .hasAuthority("ADMIN")
+
+                    .anyRequest()
+                    .authenticated()
                 .and()
                     .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .loginProcessingUrl("/process-login")
-//                    .defaultSuccessUrl("/home") //HTTP 403'e sebep oluyor.
-                    .successHandler(successHandler)
-                    .permitAll()
+                        .loginPage("/login")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .loginProcessingUrl("/process-login")
+//                      .defaultSuccessUrl("/home") //HTTP 403'e sebep oluyor.
+                        .successHandler(successHandler)
+                        .permitAll()
                 .and()
-                    .logout().logoutSuccessUrl("/").permitAll()
-                .and()
-                    .csrf()
-                    .disable();
+                    .logout()
+                    .logoutSuccessUrl("/")
+                    .permitAll();
+
     }
 }
