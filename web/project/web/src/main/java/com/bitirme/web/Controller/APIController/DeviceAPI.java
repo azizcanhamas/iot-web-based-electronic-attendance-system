@@ -52,12 +52,6 @@ public class DeviceAPI {
                 //dersKodu
                 String gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue());
                 String saat= String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-
-
-                System.out.println(tmp.getSinifKodu());
-                System.out.println(gunNumber);
-                System.out.println(saat);
-
                 Ders d=dersRepo.getCurrentLesson(tmp.getSinifKodu(),gunNumber,saat+":00");
                 cihazIstek.setDersKodu(d.getDersKodu());
 

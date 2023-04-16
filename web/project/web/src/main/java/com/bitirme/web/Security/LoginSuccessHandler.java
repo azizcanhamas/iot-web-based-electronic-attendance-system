@@ -1,4 +1,4 @@
-package com.bitirme.web;
+package com.bitirme.web.Security;
 
 import com.bitirme.web.CustomUserDetails.CustomUserDetails;
 import org.springframework.security.core.Authentication;

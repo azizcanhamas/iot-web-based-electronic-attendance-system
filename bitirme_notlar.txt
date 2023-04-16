@@ -1,8 +1,5 @@
 SERVER TARAFI İÇİN PLANLAR
 ==================================
-* Admin ana sayfasına cihazlardan gelen istekler loglanacak.
-Bunun için bir tablo daha oluşturulmalı.
-
 * Zaman tabanlı event'lere bakılmalı.
 Bir dersin yoklaması, dersin başlangıcından 15 dakika
 ileriye kadar olan zaman diliminde alınmalı.

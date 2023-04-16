@@ -1,6 +1,7 @@
-package com.bitirme.web;
+package com.bitirme.web.Security;
 
 import com.bitirme.web.CustomUserDetails.CustomUserDetailsService;
+import com.bitirme.web.Security.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
