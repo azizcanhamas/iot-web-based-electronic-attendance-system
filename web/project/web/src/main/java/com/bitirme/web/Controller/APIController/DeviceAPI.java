@@ -10,10 +10,10 @@ import com.bitirme.web.Repository.DersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,7 +32,7 @@ public class DeviceAPI {
     private DersRepository dersRepo;
 
     //Kart okutuldugu zaman Cihaz tarafindan bu fonksiyon tetiklenecektir.
-    @GetMapping("/api")
+    @GetMapping("/api/varYaz")
     public Map<String,String> varYaz(CihazIstekleri cihazIstek) throws ParseException {
 
         System.out.println(cihazIstek.getCihazToken());
@@ -69,5 +69,29 @@ public class DeviceAPI {
         return map;
     }
 
+    //Cihaz bulundugu sinifta islenen dersi gosterebilmek icin bu fonksiyonu tetikleyecektir.
+    @GetMapping("/api/getLesson")
+    public Map<String,String> getLesson(@RequestParam("cihazToken") String cihazToken){
+        List<Cihaz> c=cihazRepo.findAll();
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        HashMap<String,String>map=new HashMap<>();
+        for(Cihaz tmp:c){
+            if(encoder.matches(cihazToken,tmp.getCihazToken())){
+                map.put("sinif",tmp.getSinifKodu());
 
+                String gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue());
+                String saat= String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+
+                System.out.println("=========== GUN   : "+gunNumber);
+                System.out.println("=========== SAAT  : "+saat);
+                System.out.println("=========== SINIF : "+tmp.getSinifKodu());
+
+                Ders d=dersRepo.getCurrentLesson(tmp.getSinifKodu(),gunNumber,saat);
+                map.put("dersAdi",d.getDersAdi());
+                return map;
+            }
+        }
+        map.put("message","Cihaz kayitli degil!");
+        return map;
+    }
 }
