@@ -57,12 +57,18 @@ public class DeviceAPI {
                 String gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue());
                 String saat= String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
                 Ders d=dersRepo.getCurrentLesson(tmp.getSinifKodu(),gunNumber,saat+":00");
-                cihazIstek.setDersKodu(d.getDersKodu());
-                cihazIstek.setPersonelNo(d.getPersonelNo());
+                if(d==null){
+                    map.put("message","Bu sinifta ders islenmiyor!");
+                    return map;
+                }
+                else{
+                    cihazIstek.setDersKodu(d.getDersKodu());
+                    cihazIstek.setPersonelNo(d.getPersonelNo());
 
-                cihazIstekleriRepo.save(cihazIstek);
-                map.put("message","Yoklama alındı!");
-                return map;
+                    cihazIstekleriRepo.save(cihazIstek);
+                    map.put("message","Yoklama alındı!");
+                    return map;
+                }
             }
         }
         map.put("message","Tanimsiz cihaz!");
