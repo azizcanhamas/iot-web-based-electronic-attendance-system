@@ -338,7 +338,7 @@ void makeHttpRequest(byte Kart[4]){
   }
   yield();
   Serial.println("Remote host connection success.");
-
+  // Create HTTP Request with GET method.
   client.print(F("GET /api/varYaz?cihazToken=derslik2cihaz&rfidKodu="));
   for(int i=0;i<4;i++){
     client.print(Kart[i]);
@@ -354,6 +354,7 @@ void makeHttpRequest(byte Kart[4]){
   client.print("Basic ");
   client.println("MTAwNTIwNzA6ZGVuZW1l");
   
+  // !!! DON'T DELETE. It's for waiting request. !!!
   if (client.println() == 0){
     Serial.println(F("Failed to send request"));
     return;
@@ -363,10 +364,43 @@ void makeHttpRequest(byte Kart[4]){
   char status[32] = {0};
   client.readBytesUntil('\r', status, sizeof(status));
   Serial.println(status);
-  if (strcmp(status, "HTTP/1.1 200 OK") != 0)
+  if (strcmp(status, "HTTP/1.1 200 ") != 0)
   {
     Serial.print(F("Unexpected response: "));
     Serial.println(status);
+    return;
+  }
+
+  // Skip HTTP headers
+  char endOfHeaders[] = "\r\n\r\n";
+  if (!client.find(endOfHeaders))
+  {
+    Serial.println(F("Invalid response"));
+    return;
+  }
+
+  // NOT REQUIRED : Print coming response from remote host.
+  //  while (client.available()) {
+  //    char c = 0;
+  //    client.readBytes(&c, 1);
+  //    Serial.print(c);
+  //  }
+
+  //Pass unvalid characters.
+  Serial.println((char)client.read());
+  Serial.println((char)client.read());
+
+  // Deserialize JSON
+  //StaticJsonDocument<192> doc;
+  DynamicJsonDocument doc(192); //For ESP32/ESP8266 you'll mainly use dynamic.
+  DeserializationError error = deserializeJson(doc, client);
+  if (!error) {
+    const char* message = doc["message"];
+    Serial.print("message: ");
+    Serial.println(message);
+  } else {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
     return;
   }
 }
