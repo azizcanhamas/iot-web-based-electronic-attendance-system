@@ -29,4 +29,9 @@ public interface DersOgrencileriRepository  extends JpaRepository<DersOgrenciler
     @Query("select do from DersOgrencileri do where do.dersKodu=:dersKodu")
     public List<DersOgrencileri> findByDersKodu(String dersKodu);
 
+    @Modifying
+    @Transactional
+    @Query("delete from DersOgrencileri do where do.dersKodu=:dersKodu")
+    public void deleteByDersKodu(String dersKodu);
+
 }

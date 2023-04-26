@@ -27,6 +27,7 @@ public class DersController {
     @GetMapping("/dersSil")
     public String dersSil(@RequestParam("dersKodu") String dersKodu){
         dersRepo.deleteByDersKodu(dersKodu);
+        dersOgrencileriRepo.deleteByDersKodu(dersKodu);
         return "redirect:/ders-islemleri";
     }
 
@@ -43,8 +44,8 @@ public class DersController {
                                      @RequestParam("dersGunu")String dersGunu,
                                      @RequestParam("dersSaati")String dersSaati){
         Ders d= dersRepo.findByDersKodu(dersKodu);
-        //d.setDersGunu(dersGunu);
-        //d.setDersSaati(dersSaati);
+        d.setDersGunu(dersGunu);
+        d.setDersSaati(dersSaati);
         dersRepo.save(d);
         return "redirect:/ders-islemleri";
     }

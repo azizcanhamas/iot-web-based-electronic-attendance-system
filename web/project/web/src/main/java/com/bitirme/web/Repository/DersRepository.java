@@ -26,7 +26,6 @@ public interface DersRepository extends JpaRepository<Ders,Long> {
     @Query("select d.dersAdi from Ders d where d.dersKodu=:dersKodu")
     public String getDersAdiByDersKodu(String dersKodu);
 
-
     @Query("select d from Ders d where d.sinifKodu=:sinifKodu and d.dersGunu=:dersGunu and d.dersSaati LIKE :dersSaati%")
     public Ders getCurrentLesson(String sinifKodu,String dersGunu,String dersSaati);
 
