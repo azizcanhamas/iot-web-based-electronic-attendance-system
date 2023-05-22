@@ -1,12 +1,8 @@
 package com.bitirme.web.Controller.APIController;
 
 
-import com.bitirme.web.Entity.Cihaz;
-import com.bitirme.web.Entity.CihazIstekleri;
-import com.bitirme.web.Entity.Ders;
-import com.bitirme.web.Repository.CihazIstekleriRepository;
-import com.bitirme.web.Repository.CihazRepository;
-import com.bitirme.web.Repository.DersRepository;
+import com.bitirme.web.Entity.*;
+import com.bitirme.web.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +26,9 @@ public class DeviceAPI {
 
     @Autowired
     private DersRepository dersRepo;
+
+    @Autowired
+    private OgrenciRepository ogrenciRepo;
 
     //Kart okutuldugu zaman Cihaz tarafindan bu fonksiyon tetiklenecektir.
     @GetMapping("/api/varYaz")
@@ -62,11 +61,18 @@ public class DeviceAPI {
                     return map;
                 }
                 else{
-                    cihazIstek.setDersKodu(d.getDersKodu());
-                    cihazIstek.setPersonelNo(d.getPersonelNo());
+                    Ogrenci ogr=ogrenciRepo.getOgrenciByRfidKodu(cihazIstek.getRfidKodu());
+                    if(ogr==null){
+                        map.put("message","Bolume kayitli degilsiniz!");
+                    }
+                    else {
+                        cihazIstek.setDersKodu(d.getDersKodu());
+                        cihazIstek.setPersonelNo(d.getPersonelNo());
 
-                    cihazIstekleriRepo.save(cihazIstek);
-                    map.put("message","Yoklama alındı!");
+                        cihazIstekleriRepo.save(cihazIstek);
+
+                        map.put("message", "Yoklama alındı!");
+                    }
                     return map;
                 }
             }
