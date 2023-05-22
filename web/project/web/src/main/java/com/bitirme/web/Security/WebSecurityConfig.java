@@ -78,26 +78,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                // ===== API CONFIGURATION
-                .httpBasic()
+                .httpBasic()  // ===== API CONFIGURATION
                     .and()
                         .authorizeRequests()
                         .antMatchers(HttpMethod.GET,"/api").hasAuthority("ADMIN")
                     .and()
                         .csrf().disable()
-
-
-                // ===== VIEW CONFIGURATION
-                .authorizeRequests()
+                .authorizeRequests()// ===== VIEW CONFIGURATION
                     .antMatchers("/","/assets/**")
                     .permitAll()
-
                     .antMatchers("/ogrenci-panel")
                     .hasAuthority("USER")
-
                     .antMatchers("/home")
                     .hasAuthority("ADMIN")
-
                     .anyRequest()
                     .authenticated()
                 .and()
