@@ -13,20 +13,25 @@ public interface DersOgrencileriRepository  extends JpaRepository<DersOgrenciler
 
     @Modifying
     @Transactional
-    @Query("delete from DersOgrencileri do where do.ogrenciNo=:ogrenciNo and do.dersKodu=:dersKodu")
+    @Query("delete from DersOgrencileri do " +
+            "where do.ogrenciNo=:ogrenciNo " +
+            "and do.dersKodu=:dersKodu")
     void deleteByOgrenciNo(String ogrenciNo,String dersKodu);
 
-
-    @Query("select count(*) from DersOgrencileri do where do.ogrenciNo=:ogrenciNo")
+    @Query("select count(*) from DersOgrencileri do " +
+            "where do.ogrenciNo=:ogrenciNo")
     public String getCountByOgrenciNo(String ogrenciNo);
 
-    @Query("select do from DersOgrencileri do where do.dersKodu=:dersKodu and do.ogrenciNo=:ogrenciNo")
+    @Query("select do from DersOgrencileri do " +
+            "where do.dersKodu=:dersKodu and do.ogrenciNo=:ogrenciNo")
     public List<DersOgrencileri> findByDersKoduAndOgrenciNo(String dersKodu, String ogrenciNo);
 
-    @Query("select do from DersOgrencileri do where do.ogrenciNo=:ogrenciNo")
+    @Query("select do from DersOgrencileri do " +
+            "where do.ogrenciNo=:ogrenciNo")
     public List<DersOgrencileri> findByOgrenciNo(String ogrenciNo);
 
-    @Query("select do from DersOgrencileri do where do.dersKodu=:dersKodu")
+    @Query("select do from DersOgrencileri do " +
+            "where do.dersKodu=:dersKodu")
     public List<DersOgrencileri> findByDersKodu(String dersKodu);
 
     @Modifying
