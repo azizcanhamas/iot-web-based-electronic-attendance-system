@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" modified="2023-06-05T16:43:50.157Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="HVGhj9of89FcEtYCWVJI" version="21.3.7" type="device">
+  <diagram name="Sayfa -1" id="QovuoFQzUPgPQqBXM2P7">
+    <mxGraphModel dx="1655" dy="865" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KyXLqIBVYe6u688NdpEO-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" source="KyXLqIBVYe6u688NdpEO-1" target="KyXLqIBVYe6u688NdpEO-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-1" value="BAŞLA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="325.75" y="130" width="184" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" source="KyXLqIBVYe6u688NdpEO-2" target="KyXLqIBVYe6u688NdpEO-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=1" edge="1" parent="1" source="KyXLqIBVYe6u688NdpEO-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="418" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="536" y="295" />
+              <mxPoint x="536" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-2" value="Saat (xx:00, xx:15, xx:30, xx:45) ifadelerinden biri mi?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="315.75" y="230" width="204" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" source="KyXLqIBVYe6u688NdpEO-4" target="KyXLqIBVYe6u688NdpEO-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-4" value="Şu an ki saatten 15 dakika geride başlayan dersleri getir." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="317.5" y="420" width="200.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-6" value="e" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="370" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-7" value="h" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="480" y="268" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" source="KyXLqIBVYe6u688NdpEO-10" target="KyXLqIBVYe6u688NdpEO-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-10" value="Bu derslerden yoklaması kapatılmamış olanların yoklamasını kapat." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="317.5" y="525" width="200.75" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" source="KyXLqIBVYe6u688NdpEO-12" target="KyXLqIBVYe6u688NdpEO-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-12" value="CihazIstekleri tablosundaki istekleri baz alarak derse katılan öğrencileri &quot;VAR&quot; yaz." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="318.75" y="630" width="198" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KyXLqIBVYe6u688NdpEO-16" value="BİTİR" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="325.88" y="730" width="184" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
