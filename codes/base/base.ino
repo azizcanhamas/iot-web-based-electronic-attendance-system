@@ -29,7 +29,7 @@ const char* password = "JkVScMq8TGao";
 // ====== CLIENT SETUP FOR HTTP REQUESTS
 #include <ArduinoJson.h> //https://github.com/bblanchon/ArduinoJson
 WiFiClient client; //Use WiFiClientSecure for HTTPS.
-#define HOST "192.168.0.6" //host server
+#define HOST "192.168.0.4" //host server
 #define HOST_PORT 8080
 #define TOKEN "derslik2cihaz"
 
@@ -447,11 +447,11 @@ void makeHttpRequest(byte Kart[4]){
     Serial.print("message: ");
     Serial.println(message);
     if(strcmp(message,"Yoklama alındı!")==0){
-      Serial.println("BASARILI!!!!!!!!!!!!!");
+      Serial.println("Permission = true!");
       Yetki=true;
     } 
     else {
-      Serial.println("BASARISIZ!!!!!");
+      Serial.println("Permission = false!");
       Yetki=false;
     }
   }

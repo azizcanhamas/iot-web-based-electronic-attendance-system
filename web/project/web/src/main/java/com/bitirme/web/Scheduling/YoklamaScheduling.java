@@ -47,19 +47,20 @@ public class YoklamaScheduling {
 
     //(Dakika,saniye) = (0,0),(15,0),(30,0),(45,0) oldugunda calisir.
     // Sistem 15 dakikada bir tum dersler icin yoklama aliyor.
+    //@Scheduled(cron = "0 0,15,30,45 * * * *")
     @Scheduled(cron = "0 0,15,30,45 * * * *")
     public void yoklamaKontrol(){
         String gunNumber;
         int dersDakikasi,sistemDakikasi;
         //Ilk 15 dakikasi gecen dersleri "Ders" tablosundan bul.
-        gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue());
+        gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue()-1);
         //Sistem gununde islenecek olan dersleri bul.
         List<Ders> dersListToday=dersRepo.findByDersGunu(gunNumber);
 
         for (Ders d:dersListToday){
             dersDakikasi=Integer.parseInt(d.getDersSaati().split(":")[1]);
             sistemDakikasi= Calendar.getInstance().get(Calendar.MINUTE);
-            if(Math.abs(sistemDakikasi-dersDakikasi)>=15){
+            if(Math.abs(sistemDakikasi-dersDakikasi)>=15){ //15
                 List<DersOgrencileri> dersOgrencileri=dersOgrencileriRepo.findByDersKodu(d.getDersKodu());
                 for (DersOgrencileri dersOgrenci:dersOgrencileri) {
                     //Her bir ogrencinin yoklanmasi icin bos bir nesne olustur.

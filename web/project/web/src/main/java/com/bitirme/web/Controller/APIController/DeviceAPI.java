@@ -53,9 +53,12 @@ public class DeviceAPI {
                 cihazIstek.setCihazToken(tmp.getCihazToken());
 
                 //Ilgili sinifta islenen dersin kodunu bul.
-                String gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue());
+                String gunNumber= String.valueOf(LocalDate.now().getDayOfWeek().getValue()-1);
                 String saat= String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
                 Ders d=dersRepo.getCurrentLesson(tmp.getSinifKodu(),gunNumber,saat+":00");
+                System.out.println("1 : "+tmp.getSinifKodu());
+                System.out.println("2 : "+gunNumber);
+                System.out.println("3 : "+saat);
                 if(d==null){
                     map.put("message","Bu sinifta ders islenmiyor!");
                     return map;
@@ -63,7 +66,7 @@ public class DeviceAPI {
                 else{
                     Ogrenci ogr=ogrenciRepo.getOgrenciByRfidKodu(cihazIstek.getRfidKodu());
                     if(ogr==null){
-                        map.put("message","Bolume kayitli degilsiniz!");
+                        map.put("message","Derse kayitli degilsiniz!");
                     }
                     else {
                         cihazIstek.setDersKodu(d.getDersKodu());
