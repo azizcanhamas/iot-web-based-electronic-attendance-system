@@ -5,7 +5,7 @@ Firat University Computer Engineering graduation project.
 https://www.youtube.com/watch?v=eulfiEd6Mw8
 
 # Login screen.
-(https://github.com/azizcanhamas/iot-web-based-electronic-attendance-system/assets/57099416/59bfa01e-899f-4d72-a229-c5a5ac9f5d1e)
+https://github.com/azizcanhamas/iot-web-based-electronic-attendance-system/assets/57099416/59bfa01e-899f-4d72-a229-c5a5ac9f5d1e
 
 # Student panel for attendance tracking.
 (https://github.com/azizcanhamas/iot-web-based-electronic-attendance-system/assets/57099416/d2e76d3a-e325-49c2-8ff7-6a07155ef91b)
