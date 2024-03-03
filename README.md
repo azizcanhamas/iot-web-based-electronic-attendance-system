@@ -1,4 +1,4 @@
-# IoT & Web Baed Electronic Attendance System
+# IoT & Web Based Electronic Attendance System
 Firat University Computer Engineering graduation project. 
 
 # YouTube Video
